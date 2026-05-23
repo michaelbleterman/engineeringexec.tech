@@ -1,0 +1,33 @@
+---
+title: "Sample Scaffold Post"
+slug: "sample-scaffold-post"
+date: "2026-05-23"
+updated: "2026-05-23"
+description: "A sample draft post used to validate the Astro content collection during scaffolding."
+categories:
+  - "engineering-leadership"
+tags:
+  - "sample"
+heroImage: ""
+heroAlt: ""
+ogImage: ""
+canonical: "https://engineeringexec.tech/posts/sample-scaffold-post"
+draft: true
+---
+
+This is a sample draft post created during Phase 2 scaffolding.
+
+It exists to validate that the content collection schema and build pipeline work correctly. This post is marked as `draft: true` and will not appear in production builds.
+
+## Testing the Schema
+
+The frontmatter above exercises every field defined in `src/content.config.ts`:
+
+- **title** and **slug** are required strings
+- **date** is a required date
+- **description** is a required string
+- **categories** and **tags** are optional string arrays
+- **heroImage**, **heroAlt**, **ogImage**, and **canonical** are optional strings
+- **draft** defaults to `false`
+
+Delete this file once real content is migrated.

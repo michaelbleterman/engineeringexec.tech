@@ -27,6 +27,10 @@ pnpm-debug.log*
 *.key
 *.p12
 *.pfx
+*.secret
+credentials.json
+service-account*.json
+.npmrc
 
 # AWS / SAM / serverless local output
 .aws-sam/
@@ -52,3 +56,10 @@ Thumbs.db
 Desktop.ini
 .idea/
 .vscode/
+*.swp
+*.swo
+*~
+.history/
+
+# Claude Code local settings
+.claude/settings.local.json
