@@ -1,0 +1,73 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  updated?: Date;
+  categories?: string[];
+  tags?: string[];
+  heroImage?: string;
+  heroAlt?: string;
+  ogImage?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description,
+  date,
+  updated,
+  categories = [],
+  tags = [],
+  heroImage,
+  heroAlt,
+  ogImage,
+  canonical,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} ogImage={ogImage}>
+  <article>
+    <header>
+      <h1>{title}</h1>
+      <time datetime={date.toISOString()}>
+        {date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+      </time>
+      {updated && (
+        <p>
+          Updated:{" "}
+          <time datetime={updated.toISOString()}>
+            {updated.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+          </time>
+        </p>
+      )}
+      {categories.length > 0 && (
+        <ul class="categories">
+          {categories.map((cat) => (
+            <li>
+              <a href={`/categories/${cat}`}>{cat}</a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </header>
+
+    {heroImage && <img src={heroImage} alt={heroAlt ?? ""} class="hero-image" />}
+
+    <div class="post-content">
+      <slot />
+    </div>
+
+    {tags.length > 0 && (
+      <footer>
+        <ul class="tags">
+          {tags.map((tag) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+      </footer>
+    )}
+  </article>
+</BaseLayout>

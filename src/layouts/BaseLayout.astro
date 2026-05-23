@@ -1,0 +1,71 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = "Engineering leadership insights and technical strategy.",
+  canonical,
+  ogImage,
+} = Astro.props;
+
+const siteUrl = Astro.site?.origin ?? "https://engineeringexec.tech";
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href;
+
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Google Analytics (GA4) -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-6Q5V3L77KW"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-6Q5V3L77KW");
+    </script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/">EngineeringExec</a>
+        <a href="/about">About</a>
+        <a href="/all-posts">Posts</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <p>&copy; {new Date().getFullYear()} EngineeringExec. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

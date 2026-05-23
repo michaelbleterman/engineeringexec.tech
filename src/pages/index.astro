@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("posts", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="EngineeringExec - Engineering Leadership Insights">
+  <h1>EngineeringExec</h1>
+  <p>Engineering leadership insights and technical strategy.</p>
+
+  {posts.length > 0 && (
+    <section>
+      <h2>Recent Posts</h2>
+      <ul>
+        {posts.map((post) => (
+          <li>
+            <a href={`/posts/${post.data.slug}`}>{post.data.title}</a>
+            <time datetime={post.data.date.toISOString()}>
+              {post.data.date.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </time>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</BaseLayout>
