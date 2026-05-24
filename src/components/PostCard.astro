@@ -1,0 +1,48 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  date: Date;
+  categories?: string[];
+  description: string;
+}
+
+const { title, slug, date, categories = [], description } = Astro.props;
+
+const categoryLabels: Record<string, string> = {
+  agile: "Agile",
+  architecture: "Architecture",
+  security: "Security",
+  teammanagement: "Team Management",
+  "software-development": "Software Development",
+  "product-management": "Product Management",
+  devops: "DevOps",
+};
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<article class="post-card">
+  <a href={`/posts/${slug}`} class="post-card-title-link">
+    <h2 class="post-card-title">{title}</h2>
+  </a>
+  <div class="post-card-meta">
+    <span class="post-card-date">{formatDate(date)}</span>
+    {categories.length > 0 && (
+      <>
+        <span class="post-card-separator">|</span>
+        {categories.map((cat, i) => (
+          <>
+            {i > 0 && <span class="post-card-separator">, </span>}
+            <a href={`/categories/${cat}`} class="post-card-category">
+              {categoryLabels[cat] || cat.charAt(0).toUpperCase() + cat.slice(1)}
+            </a>
+          </>
+        ))}
+      </>
+    )}
+  </div>
+  <p class="post-card-excerpt">{description}</p>
+  <a href={`/posts/${slug}`} class="post-card-read-more">Continue reading →</a>
+</article>

@@ -1,9 +1,13 @@
 ---
+import Sidebar from "../components/Sidebar.astro";
+import "../styles/global.css";
+
 interface Props {
   title: string;
   description?: string;
   canonical?: string;
   ogImage?: string;
+  jsonLd?: Record<string, unknown>;
 }
 
 const {
@@ -11,12 +15,11 @@ const {
   description = "Engineering leadership insights and technical strategy.",
   canonical,
   ogImage,
+  jsonLd,
 } = Astro.props;
 
 const siteUrl = Astro.site?.origin ?? "https://engineeringexec.tech";
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href;
-
-import "../styles/global.css";
 ---
 
 <!doctype html>
@@ -33,7 +36,11 @@ import "../styles/global.css";
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="EngineeringExec" />
     {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="EngineeringExec RSS" href="/posts/rss.xml" />
 
     <!-- Google Analytics (GA4) -->
     <script
@@ -49,23 +56,16 @@ import "../styles/global.css";
       gtag("js", new Date());
       gtag("config", "G-6Q5V3L77KW");
     </script>
+
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="/">EngineeringExec</a>
-        <a href="/about">About</a>
-        <a href="/all-posts">Posts</a>
-        <a href="/contact">Contact</a>
-      </nav>
-    </header>
+    <Sidebar />
 
-    <main>
+    <main class="main-content">
       <slot />
     </main>
-
-    <footer>
-      <p>&copy; {new Date().getFullYear()} EngineeringExec. All rights reserved.</p>
-    </footer>
   </body>
 </html>
