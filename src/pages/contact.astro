@@ -3,6 +3,29 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Contact - EngineeringExec" description="Get in touch.">
-  <h1>Contact</h1>
-  <p>Placeholder page. The contact form will be added during the backend phase.</p>
+  <h1 class="page-title">Get in touch</h1>
+
+  <form class="contact-form" id="contact-form">
+    <div class="form-group">
+      <label class="form-label" for="name">Name</label>
+      <input class="form-input" type="text" id="name" name="name" placeholder="Enter your name" required />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="email">Email Address</label>
+      <input class="form-input" type="email" id="email" name="email" placeholder="Enter your email address" required />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="message">Message</label>
+      <textarea class="form-textarea" id="message" name="message" placeholder="Enter your message" required></textarea>
+    </div>
+
+    <!-- Honeypot field (hidden from users) -->
+    <div style="position:absolute;left:-9999px" aria-hidden="true">
+      <input type="text" name="honeypot" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <button class="form-submit" type="submit">Submit</button>
+  </form>
 </BaseLayout>

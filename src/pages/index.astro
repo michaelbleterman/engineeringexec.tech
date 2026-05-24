@@ -1,32 +1,29 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PostCard from "../components/PostCard.astro";
 import { getCollection } from "astro:content";
 
-const posts = (await getCollection("posts", ({ data }) => !data.draft))
+const allPosts = (await getCollection("posts", ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const posts = allPosts.slice(0, 5);
+const hasMore = allPosts.length > 5;
 ---
 
-<BaseLayout title="EngineeringExec - Engineering Leadership Insights">
-  <h1>EngineeringExec</h1>
-  <p>Engineering leadership insights and technical strategy.</p>
+<BaseLayout title="EngineeringExec - practitioner's blog">
+  {posts.map((post) => (
+    <PostCard
+      title={post.data.title}
+      slug={post.data.slug}
+      date={post.data.date}
+      categories={post.data.categories}
+      description={post.data.description}
+    />
+  ))}
 
-  {posts.length > 0 && (
-    <section>
-      <h2>Recent Posts</h2>
-      <ul>
-        {posts.map((post) => (
-          <li>
-            <a href={`/posts/${post.data.slug}`}>{post.data.title}</a>
-            <time datetime={post.data.date.toISOString()}>
-              {post.data.date.toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-          </li>
-        ))}
-      </ul>
-    </section>
+  {hasMore && (
+    <div class="more-posts-wrapper">
+      <a href="/all-posts" class="more-posts-link">More posts →</a>
+    </div>
   )}
 </BaseLayout>

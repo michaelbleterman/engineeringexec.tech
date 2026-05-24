@@ -1,6 +1,17 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
 import { getCollection } from "astro:content";
+
+const categoryLabels: Record<string, string> = {
+  agile: "Agile",
+  architecture: "Architecture",
+  security: "Security",
+  teammanagement: "Team Management",
+  "software-development": "Software Development",
+  "product-management": "Product Management",
+  devops: "DevOps",
+};
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts", ({ data }) => !data.draft);
@@ -17,16 +28,18 @@ export async function getStaticPaths() {
 }
 
 const { category, posts } = Astro.props;
-const title = category.charAt(0).toUpperCase() + category.slice(1);
+const displayName = categoryLabels[category] || category.charAt(0).toUpperCase() + category.slice(1);
 ---
 
-<BaseLayout title={`${title} - EngineeringExec`} description={`Posts in ${title} category.`}>
-  <h1>{title}</h1>
-  <ul>
-    {posts.map((post) => (
-      <li>
-        <a href={`/posts/${post.data.slug}`}>{post.data.title}</a>
-      </li>
-    ))}
-  </ul>
+<BaseLayout title={`${displayName} - EngineeringExec`} description={`Posts in ${displayName} category.`}>
+  <h1 class="category-title">{displayName}</h1>
+  {posts.map((post) => (
+    <PostCard
+      title={post.data.title}
+      slug={post.data.slug}
+      date={post.data.date}
+      categories={post.data.categories}
+      description={post.data.description}
+    />
+  ))}
 </BaseLayout>
