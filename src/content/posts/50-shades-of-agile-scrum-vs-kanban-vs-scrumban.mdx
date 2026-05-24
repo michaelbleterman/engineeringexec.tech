@@ -1,0 +1,368 @@
+---
+title: "50 Shades of Agile: Scrum vs Kanban vs Scrumban"
+slug: 50-shades-of-agile-scrum-vs-kanban-vs-scrumban
+date: 2026-02-23
+updated: 2026-02-22
+description: "Scrum or Kanban - that is the question! Let's compare them, using a real-world case-studies and maybe we can come with even more suitable mix-and-match framework."
+categories:
+  - "agile"
+tags: []
+heroImage: /assets/posts/50-shades-of-agile-scrum-vs-kanban-vs-scrumban/hero.jpeg
+heroAlt: "50 Shades of Agile: Scrum vs Kanban vs Scrumban"
+canonical: "https://engineeringexec.tech/posts/50-shades-of-agile-scrum-vs-kanban-vs-scrumban"
+draft: false
+---
+
+# Introduction
+
+If you’ve been living and acting in the Software Development field in the 21st century, the word “Agile” shouldn't really scare you much. Having said that, not every kind of Agile necessarily fits your process, company or product.
+
+The idea of this article is to provide a brief comparison of some of the most popular Agile frameworks: **Scrum**, **Kanban** and **Scrumban,** and try to give some tips to pick the right one for you.
+
+## A Brief History of Agile
+
+Agile methodologies emerged as a response to the challenges of traditional software development approaches, particularly the [**Waterfall model**](https://en.wikipedia.org/wiki/Waterfall_model), which was often criticized for its rigid structure and inability to adapt to changes during the development process.
+
+#### **1\. The Waterfall Era (1950s-1990s)**‍
+
+The Waterfall model was the dominant methodology in software development. It followed a linear, sequential approach with distinct phases: requirements, design, implementation, testing, and maintenance.
+
+While Waterfall was useful for projects with clear, unchanging requirements, it struggled with the fast-paced, unpredictable nature of software development.
+
+#### **2\. The Need for Change (1980s-1990s)**‍
+
+Developers and project managers began to recognize the limitations of the Waterfall model, especially in projects where requirements evolved or were unclear from the start.
+
+Various iterative and incremental development methods started gaining popularity as alternatives, aiming to deliver software in smaller, more manageable pieces.
+
+#### **3\. The Agile Manifesto (2001)**‍
+
+In February 2001, 17 software developers met in Snowbird, Utah, to discuss their frustrations with traditional development methodologies.
+
+This meeting resulted in the creation of the [**Agile Manifesto**](https://www.agilealliance.org/agile101/the-agile-manifesto/), a document that outlined four key values and twelve principles emphasizing customer collaboration, flexibility, and frequent delivery of working software.
+
+The Agile Manifesto marked the formalization of Agile methodologies, advocating for a more adaptive, people-centric approach to software development.
+
+#### **4\. The Rise of Agile Frameworks (2000s)**‍
+
+‍**Scrum**: Developed in the early 1990s by Ken Schwaber and Jeff Sutherland, Scrum became one of the most popular Agile frameworks. It introduced the concept of Sprints, regular intervals for planning, review, and retrospective meetings.
+
+**Extreme Programming (XP)**: Another early Agile framework, XP, emphasized technical practices like Test-Driven Development (TDD), continuous integration, and pair programming.
+
+**Kanban**: Although Kanban originated in manufacturing, it was adapted for software development in the 2000s. Kanban focuses on visualizing work, limiting Work in Progress (WIP), and improving flow.
+
+#### **5\. Widespread Adoption and Evolution (2010s-Present)**‍
+
+Agile methodologies gained widespread adoption across industries, with companies of all sizes embracing Agile practices to improve flexibility, customer satisfaction, and team collaboration.
+
+**Scrumban** and other hybrid frameworks emerged, combining elements of different Agile methodologies to suit specific team needs.
+
+Agile principles have influenced not just software development but also other areas of business and project management, leading to the creation of frameworks like **Scaled Agile Framework (SAFe)** and **Large-Scale Scrum (LeSS)** for managing Agile practices at scale.
+
+#### **6\. Agile Today**‍
+
+Agile methodologies continue to evolve, with ongoing discussions about best practices, challenges in implementation, and the future of Agile in an increasingly digital and distributed work environment.
+
+The principles of Agile have become foundational in modern software development, emphasizing continuous improvement, customer collaboration, and the ability to respond to change.
+
+# Scrum: embrace the change, but play by the rules
+
+[Scrum](https://www.scrum.org/) is one of the most structured and well-defined Agile frameworks with wide adoption in the industry.
+
+It has roles, artifacts and  events, providing an extensive set of best practices and “gauges” to fit the specific process or organization’s needs. Below is a small recap that gives a glance into the full [Scrum Guide](https://scrumguides.org/scrum-guide.html).
+
+## Roles in a Scrum Team
+
+**Developers**: People who are accountable for getting things done and bringing value (_increment_ in Scrum language)
+
+‍**Product Owner:** The “liaison officer” between the Developers and the outside world, responsible for setting the goals, prioritizing things and communicating the progress/results
+
+‍**Scrum Master:**  The **“**coach**”** who makes sure everybody plays by the rules and facilitates the hole process
+
+## Scrum events
+
+**Sprint:**  Not really an “event”,  but a time-boxed iteration with a well-defined _backlog_ to be accomplished in order to reach the sprint goal
+
+**Sprint planning:** A planning meeting of the Scrum team that leads to generation of the _sprint goal_ and the _sprint backlog_ ‍
+
+**Daily Scrum:**  A short daily team standup meeting that serves to inspect the sprint progress and eliminate blockers
+
+**Sprint review:** An assembly of the Scrum Team and external stakeholders where the team presents the sprint results and stakeholders provide their feedback
+
+‍**Sprint retrospective:** An intimate inner team meeting held at the end of each sprint to review the process and facilitate the continuous improvement cycle
+
+## Scrum artifacts
+
+**Product backlog:** A general “todo” list of tasks, bugs and other items that should add value to the stakeholders by fixing things, increasing product quality or adding new features.
+
+‍**Sprint backlog:** An ordered and “groomed” subset of the _Product backlog_ that was carefully chosen to be included in the Sprint; its fulfillment will effectively lead to meeting the _Sprint goal._
+
+‍**Increment:** A single accomplished  item (bug, task, document, etc.) from the _Sprint backlog_ that drives the team towards the Sprint Goal and brings value to the stakeholders. There should be a well-defined and commonly agreed  _Definition of Done_ to decide if a specific item counts as an increment.
+
+## Scrum applications, pros and cons
+
+As you’ve probably noticed, Scrum has plenty of “rules” that require a learning curve and even a dedicated function (“_Scrum Master_”) to implement.
+
+When adopted and implemented successfully, it brings a lot of value to the company and the process.
+
+## Case study: Jifiti Gifting NG Platform
+
+The recent Scrum implementation I experienced was a process implemented for development of  the next-generation platform (**NG**) for the Gift cards white-label mall for [Jifiti](https://gifting.jifiti.com/).
+
+The team included 4 developers: 2 backend, 1 front-end, 1 QA and 1 PO (shared with other teams).
+
+The 2-weeks sprint was planned with a 1-hour Sprint Planning session, ended with 1-hour Sprint Review  and sealed with a 45-minutes Sprint Retrospective.
+
+The team quickly developed the MVP version of the platform and got it live within 10-12 sprints. Following the product feedback  and the general roadmap, missing important features and improvements were gradually delivered over the next year and a half while keeping Production running.
+
+Product/Sprint backlogs were managed via the [JIRA platform](https://www.atlassian.com/software/jira), which also helped to measure progress and facilitate Sprint events such as Sprint Planning and Retrospective.
+
+The process took a while to ramp up due to the readiness of the Product Backlog, setting up goals and general team build-up. However, once it entered the “golden path”, overall delivery speed, product quality and stakeholders' satisfaction increased significantly .
+
+## Pros and cons
+
+Scrum works well if:
+
+-   The team works in isolated manner and can be fully dedicated to the Sprint goals without interrupts
+-   The team  is being trained and follows the Scrum guide rules, while being fully supported by the whole organization
+-   The nature of the project fits the team’s abilities to make it as much self-sufficient as possible
+
+Scrum  suites less if:
+
+-   The nature of the field the team works with doesn’t allow stable goals setting/planning even for the short periods (e.g. on-call duties)
+-   The overall organizational structure/processes doesn’t work in iterative/Agile  manner
+-   The team is highly dependent of other teams/individuals who doesn’t work in Scrum framework
+
+# Kanban: The  ̶Sp̶i̶c̶e̶  Work Must Flow
+
+Strictly speaking, [Kanban](https://en.wikipedia.org/wiki/Kanban) is more of a flow definition and visualization rather than a structured process framework.
+
+Originally invented for improving the Toyota manufacturing practices, it became widely adopted in many areas including Software Development.
+
+## Key milestones
+
+**1940s: Origins in Manufacturing**
+
+-   Kanban was developed by Taiichi Ohno at Toyota Motor Corporation in Japan.
+-   It was part of the Toyota Production System (TPS), aimed at improving manufacturing efficiency.
+
+**1950s-1960s: Refinement at Toyota**
+
+-   The system was refined and fully implemented at Toyota during this period.
+-   It helped Toyota achieve just-in-time manufacturing, reducing waste and improving productivity.
+
+**1970s-1980s: Spread to Other Industries**
+
+-   As Toyota's success became known, other Japanese manufacturers began adopting Kanban.
+-   The concept started spreading to manufacturing companies in the West.
+
+**1990s-2000s: Adaptation to Knowledge Work**
+
+-   David J. Anderson adapted Kanban for software development and IT operations in 2004.
+-   This marked the beginning of Kanban's use in knowledge work and project management.
+
+**2000s-Present: Widespread Adoption**
+
+-   Kanban has been widely adopted in various industries beyond manufacturing and software development.
+-   It has become a key component of Agile and Lean methodologies.
+-   Digital Kanban boards and tools have proliferated, making the system more accessible and versatile.
+
+Today, Kanban is used globally in various sectors, from software development to healthcare, as a method for managing work and improving process efficiency.
+
+## Key concepts of Kanban
+
+**Visual board**: Tasks are represented on a board, typically divided into columns representing different stages of work.
+
+**Work in Progress (WIP) limits**: Each column has a maximum number of tasks allowed, preventing overloading.
+
+**Pull system**: Team members pull work from one stage to the next when capacity allows, rather than having work pushed to them.
+
+**Continuous flow**: The goal is to maintain a smooth, continuous flow of work through the system.
+
+**Cards**: Individual tasks are represented by cards on the board, moving from left to right as they progress.
+
+**Continuous improvement**: Teams regularly review and optimize their workflow.
+
+Having such a minimalistic “set of rules”, Kanban allows very flexible adaptation and implementation in various fields where agility needs to be taken to extreme levels.
+
+## Case study: DevOps Work Management via Kanban Board
+
+### Context
+
+DevOps is often described as a “jack of all trades” function. For small companies, it frequently includes both handling critical production environment outages and managing long-running infrastructure projects.
+
+The [NG project](https://docs.google.com/document/d/18t_xtIql9I4iqurk3GyujBhwFAuoxd41J7l-7afxfyk/edit#heading=h.awcefbannzfc) mentioned in the [Scrum section](https://docs.google.com/document/d/18t_xtIql9I4iqurk3GyujBhwFAuoxd41J7l-7afxfyk/edit#heading=h.jhanaocf0k99) required infrastructure development efforts, such as
+
+-   CI/CD pipes establishment
+-   Setting up monitoring and alerting tooling.
+
+ In addition, other products and platforms required attention for  ongoing maintenance tasks or Production incidents troubleshooting.
+
+An individual DevOps engineer was assigned to fulfill these needs, necessitating the right balance between various tasks.
+
+### Implementation
+
+The “DevOps tasks” Kanban board was created using the  [Monday.com](http://monday.com) platform.
+
+All tasks were added as Kanban cards, attributed with "priority" and other task-specific metadata. The platform allowed integration with external systems for creating cards based on email.
+
+**Kanban Board Structure**
+
+The stages (columns) defined for Kanban board were :
+
+1.  **Backlog**: For the general unprioritized pool of tasks/ideas
+2.  **Not Started**: Prioritized list of tasks not yet handled
+3.  **In Progress**: List of Work In Progress (WIP) tasks, limited by capacity and prioritized internally
+4.  **Done**: Accomplished tasks, auto-archived after a certain retention period for better clarity
+
+**Benefits**
+
+Given the dynamic nature of DevOps work, this structure allowed for:
+
+-   Prompt handling of urgent and unpredicted tasks
+-   Planning and tracking of project work
+
+The visual board provided:
+
+-   A clear picture of the engineer's workload at all times
+-   Useful insights into velocity and types of items being handled
+
+## Kanban pros and cons
+
+### Pros:
+
+**Flexibility**: Easily adapts to changes in priorities or workload.
+
+**Visualizes workflow**: Provides clear visibility of work progress and bottlenecks.
+
+**Improves efficiency**: Helps identify and eliminate waste in processes.
+
+**Reduces overburden**: WIP limits prevent team overload and multitasking.
+
+**Continuous delivery**: Supports smooth, ongoing delivery of work items.
+
+**Easy to implement**: Can be adopted gradually without major organizational changes.
+
+### Cons:
+
+**Lack of timeframes**: No inherent time-boxing, which some teams may find challenging.
+
+**Potential for abuse**: Without discipline, WIP limits might be ignored.
+
+**Less structured**: Compared to methodologies like Scrum, it provides less prescribed structure.
+
+**May not suit all projects**: Better for ongoing work than fixed-term projects with definite endpoints.
+
+**Requires commitment**: Team must be committed to the process for it to be effective.
+
+# Scrumban: The Hybrid
+
+As observed in both **Scrum** and **Kanban**, their “_pros_” are often the “_cons_” of the other: rigidity of Scrum vs flexibility of Kanban. Or one might say, the well-structured Scrum vs. the perceived “chaos” of Kanban.
+
+However, these methodologies need not be mutually exclusive. Teams can benefit from both by combining them into a hybrid model: **Scrumban**.
+
+The name and concept of **Scrumban** were first introduced by Corey Ladas in 2008 as a way to combine the principles of Scrum and Kanban.
+
+As the youngest among the three, the rules of **Scrumban** are still very much debatable. Various sources may give different interpretations and definitions of this hybrid approach.
+
+## Key features and attributes
+
+-   **Visual board**: Uses a Kanban-style board to visualize workflow
+-   **Sprints**: Incorporates time-boxed iterations from Scrum, but more flexible (and usually shorter)
+-   **WIP limits**: Adopts Kanban's work-in-progress limits
+-   **Continuous flow**: Emphasizes smooth workflow like Kanban
+-   **On-demand planning**: Planning happens when needed, not on a fixed schedule
+
+## Roles
+
+The “mix and match” approach is very much applied here and you can have either all classic [Scrum roles](https://docs.google.com/document/d/18t_xtIql9I4iqurk3GyujBhwFAuoxd41J7l-7afxfyk/edit#heading=h.zal3o6agq7e) or stay with a bare minimum **Developers** part.
+
+## Events
+
+Scrumban retains some Scrum ceremonies:
+
+-   **Daily stand-ups**
+-   **Retrospectives**
+-   **Sprints** (or "**iterations**"): No more than 2 weeks long
+-   **Planning meetings**: Held on a case-by-case basis
+
+## Artifacts
+
+The use of [Scrum artifacts](https://docs.google.com/document/d/18t_xtIql9I4iqurk3GyujBhwFAuoxd41J7l-7afxfyk/edit#heading=h.uni0mfhxsst) is advised, but not strict. Kanban’s “[pull](https://docs.google.com/document/d/18t_xtIql9I4iqurk3GyujBhwFAuoxd41J7l-7afxfyk/edit#heading=h.7vbkrfb5d0n2)” approach is used for the specific tasks’ assignment.
+
+## Case study: legacy system support and infrastructure team
+
+### Team Context
+
+-   4-member development team
+-   Responsibilities:
+    -   Maintaining existing Gifting platform
+    -   Developing and improving infrastructures for the [NG Team](https://docs.google.com/document/d/18t_xtIql9I4iqurk3GyujBhwFAuoxd41J7l-7afxfyk/edit#heading=h.awcefbannzfc)
+
+### Initial Approach: Scrum
+
+-   Started with a roadmap and backlog
+-   Challenges:
+    -   Ad-hoc "on-call" tasks frequently interrupted work
+    -   These interruptions contradicted classical "sealed sprints" Scrum methodology
+
+### Transition to Scrumban
+
+Team found itself "violating" the  [Scrum guide](https://www.scrum.org/resources/scrum-guide) in certain aspects:
+
+-   Tasks assigned by Product Owner (PO)
+-   Sprint backlog not fully defined during Sprint Planning
+
+Thus, Scrum-based processes evolved  into more flexible Scrumbian framework:
+
+**Sprint Structure**:
+
+-   2-week sprints
+-   Sprint backlog drafted during Sprint Planning
+-   20-30% buffer left for ad-hoc tasks added during the sprint
+
+**Task Management**:
+
+-   Team members proactively pulled items based on priority
+-   Priorities constantly re-evaluated during daily meetings
+
+**Visualization**:
+
+-   JIRA board reflected both Work In Progress (WIP) items and sprint backlog
+
+Such a hybrid approach allowed the team to work in a structured manner while staying vigilant to urgent requests and Production outages.
+
+## Pros and Cons
+
+Pros:
+
+-   Flexibility: Combines the structure of Scrum with the flexibility of Kanban.
+-   Visualization: Provides clear visibility of work progress and bottlenecks.
+-   Gradual adoption: Can be easier to implement than a full Scrum or Kanban system, especially for teams transitioning from traditional methods.
+-   Balanced workload: WIP limits help prevent overburden and multitasking.
+-   Continuous flow: Supports smooth, ongoing delivery while maintaining some time-boxed events.
+-   Adaptability: Can be tailored to suit different team sizes and project types.
+
+Cons:
+
+-   Complexity: The hybrid nature can be confusing for teams new to Agile methodologies.
+-   Potential misuse: Teams might cherry-pick elements without understanding the underlying principles.
+-   Less prescriptive: Provides less guidance than pure Scrum, which some teams might find challenging.
+-   Training challenges: May require additional training to understand how to effectively blend Scrum and Kanban practices.
+-   Metrics confusion: Mixing Scrum and Kanban metrics can complicate performance tracking and reporting.
+
+# Conclusion
+
+We observed various Agile frameworks: **Scrum**, **Kanban** and **Scrumban**.
+
+**Scrum** provides the most structured framework, though it can be challenging to adopt.
+
+**Kanban** offers the most flexible and visualized approach.
+
+**Scrumban** attempts to combine the best of both, while potentially facing challenges due to its relative immaturity and possible confusion during implementation.
+
+The case studies demonstrated different real-world examples where one framework was chosen over others, or even a transformation between frameworks occurred.
+
+Agile embraces change and empirical processes. This principle applies to choosing an Agile framework as well: select one, evaluate if it fits your team/product/industry - and be prepared to change it if needed!
+
+What's next? Agile's evolution doesn't stop with human teams. I've been experimenting with applying Scrum principles to a team of autonomous AI agents — read about it here: [AI-Scrum: Can Proven Agile Principles Work for Agent Teams?](/posts/ai-scrum-can-proven-agile-principles-work-for-agent-teams)

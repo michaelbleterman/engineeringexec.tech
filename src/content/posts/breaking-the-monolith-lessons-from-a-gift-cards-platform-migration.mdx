@@ -1,0 +1,136 @@
+---
+title: "Breaking the Monolith: Lessons from a Gift Cards Platform Migration"
+slug: breaking-the-monolith-lessons-from-a-gift-cards-platform-migration
+date: 2025-05-24
+description: What happens when your legacy gift card platform meets a modern microservices overhaul? Expect chaos, tight deadlines, and a balancing act between stability and innovation. This post dives into the hard-earned lessons of leading two teams through a gradual, messy, and ultimately rewarding transformation—without stopping the business or breaking everything along the way.
+categories:
+  - "architecture"
+tags: []
+heroImage: /assets/posts/breaking-the-monolith-lessons-from-a-gift-cards-platform-migration/hero.png
+heroAlt: "Breaking the Monolith: Lessons from a Gift Cards Platform Migration"
+canonical: "https://engineeringexec.tech/posts/breaking-the-monolith-lessons-from-a-gift-cards-platform-migration"
+draft: false
+---
+
+Transitioning from a monolithic architecture to microservices is like repairing an airplane engine mid-flight. In my previous role, I led the multi-year evolution of a white-labeled mall gift card solution from a fragile monolith to a modular, scalable microservices ecosystem. The catch? We had to maintain legacy systems, introduce new features, and onboard clients—all at once.
+
+This is the story of how we did it, what went wrong, and what we learned.
+
+## **The Monolith: Dual Backend, Embedded Frontend**
+
+Our starting point was a split-backend monolith:
+
+-   **Backend A** (Purchase): .NET Framework app hosted on IIS, handling the gift card catalog and purchases.
+
+-   **Backend B** (Redemption): Another IIS-hosted .NET Framework service dealing with card redemption and validation.
+
+Both shared a **single SQL Server database**, tightly coupled with business logic. The UI was built with **AngularJS single-page applications**, but not in the traditional sense. Instead, these frontends were **embedded in client portals as iframes**, resulting in clunky UX, security concerns, and a brittle integration model.
+
+In essence, we had a dual-headed monolith—two massive .NET services that didn't scale independently, with frontends duct-taped into client systems.
+
+## **The Teams: Two Worlds, One Goal**
+
+To manage the transition, we split into two dedicated teams:
+
+-   **Legacy Team**: Maintained and patched the monolith. Their main goal: keep the lights on.
+
+-   **NG (Next Generation) Team**: Focused on designing and building microservices for new capabilities and eventually replatforming existing ones.
+
+This clear separation helped prevent context-switching burnout, but also introduced coordination overhead. When the first shared dependency emerged—like accessing a legacy DB table from a microservice—we knew we were entering dangerous waters.
+
+## **The Microservices Architecture: Clean in Theory, Messy in Practice**
+
+The vision was elegant:
+
+-   **Angular -based frontends**, distributed as **JavaScript SDKs** for clients to embed and integrate easily.
+
+-   Microservices for each core capability:
+
+    -   **Catalog Service
+
+        **
+    -   **Order Service
+
+        **
+    -   **Payment Service
+
+        **
+    -   **Issuing Service
+
+        **
+    -   **Custom Offer Service**
+    -   **Misc infra services and lambdas like authentication, localization and configuration**
+
+Each service followed clean separation of concerns, deployed independently, and communicated via REST APIs. The backend stack was now:
+
+-   **Node.js & .NET Core** depending on the team and use-case
+
+-   **MongoDB** for flexibility and faster iteration
+
+-   **Managed Redis (Elasticache)**  for caching frequent reads (e.g., product catalogs, offer configs)
+
+But reality was more complex.
+
+## **The Transition: Why a Clean Break Wasn't an Option**
+
+The monolith wasn’t something we could just “turn off.” Clients were already in production. Business couldn’t stop.
+
+So we embraced the [**Strangler Fig Pattern**](https://martinfowler.com/bliki/StranglerFigApplication.html) \- a gradual cut-over from monolith to microservices. For example:
+
+-   The **Order Service** initially queried the legacy **SQL Server DB** directly for payments or catalog data, bypassing any domain encapsulation. Technical debt, yes. But it bought us time.
+
+-   Over several sprints, we **migrated reference data** to MongoDB and re-implemented key logic in the microservice itself. Eventually, we disabled SQL access altogether.
+
+This pattern repeated across services: reuse what we could, replace when ready, retire only when safe.
+
+## **Infrastructure and Integration Challenges**
+
+Some of the technical hurdles we faced:
+
+-   **Business flows implementation complexity**: a legacy code, written for years by multiple generations of developers just mixed together various flows, features and even customer-specific tweaks in an “elegant” spaghetti. No documentation, of course. Just a reverse engineering took a gargantuan effort. No Copilot to rescue.
+
+-   **Cache invalidation**: “what to cache” is an easy question, but invalidating it efficiently is a hard one. Given the fact the giftcard catalog doesn’t change very often, but when it does it must be properly reflected gave us a significant pain.
+
+-   **Data Sync**: While transitioning to MongoDB, we temporarily dual-wrote to SQL and Mongo using event-driven sync—until Mongo became the source of truth.
+
+-   **Monitoring**: Observability was initially an afterthought, hardly centralized logs. We invested in **NewRelic** basic integration first and  custom instrumentation later to debug multi-service flows.
+
+## **Frontend Evolution: From iFrames to SDKs**
+
+The shift from iframe-based AngularJS apps to **SDK-driven Angular modules** was a game-changer.
+
+-   Clients now embedded SDKs like they would Google Maps.
+
+-   Our SDKs were versioned, self-contained, and published with well-documented examples..
+
+-   We exposed minimal configuration surface (e.g., client ID, locale, currency) and handled the rest internally.
+
+This also meant UI/UX was under our control again - a win for design consistency, accessibility and performance.
+
+## **Tips for Others Breaking Their Monolith**
+
+Here’s what helped us survive the chaos:
+
+### **1\. Embrace Imperfection Early**
+
+You won’t have “clean architecture” from day one. Start delivering value—even if it means microservices read from the monolith DB. Clean up later, but always move forward.
+
+### **2\. Establish a “Shared Kernel” Team**
+
+Have a dedicated group maintain core utilities: auth libraries, logging, shared schemas. Otherwise, inconsistencies will kill your velocity.
+
+### **3\. Over-communicate Between Teams**
+
+Legacy and NG must sync weekly. Create visibility on shared data models, rollout plans, and tech debt.
+
+### **4\. Treat Migration as a Product**
+
+Give it a roadmap. Define success metrics. Don’t leave it to “spare cycles” or it’ll never happen.
+
+## **Final Thoughts: It’s Worth It (Eventually)**
+
+Breaking a monolith feels like death by a thousand cuts. But every service that’s fully decoupled becomes a win. Our payoff? Faster deployments, better client integration, modern tooling, and most importantly—room to innovate.
+
+It’s a messy, painful, and absolutely necessary journey.
+
+If you're in the middle of your own monolith breakup, I’d love to hear your war stories.

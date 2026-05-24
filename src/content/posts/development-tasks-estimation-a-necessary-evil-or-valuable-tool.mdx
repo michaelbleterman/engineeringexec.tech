@@ -1,0 +1,323 @@
+---
+title: "Development Tasks Estimation: A Necessary Evil or Valuable Tool?"
+slug: development-tasks-estimation-a-necessary-evil-or-valuable-tool
+date: 2024-07-22
+updated: 2024-07-18
+description: "What's the most hated task for developers during sprint planning? Task estimation. There's only one moment in a development item's lifecycle when its estimate is 100% accurate: when it's done. Development task estimation has long been the industry's holy grail - elusive, often inaccurate, and frequently despised. Let's shed some light on what works, what doesn't and how to make the process more valuable for everyone involved."
+categories:
+  - "scrum"
+tags: []
+heroImage: /assets/posts/development-tasks-estimation-a-necessary-evil-or-valuable-tool/hero.jpg
+heroAlt: "Development Tasks Estimation: A Necessary Evil or Valuable Tool?"
+canonical: "https://engineeringexec.tech/posts/development-tasks-estimation-a-necessary-evil-or-valuable-tool"
+draft: false
+---
+
+## **Why Estimate at All?**
+
+No matter how agile or free-style a development team operates, they need a framework. Features must be delivered and bugs fixed - preferably sooner rather than later. But what exactly is "sooner"?
+
+-   Product managers need to know when to ask Marketing to create a shiny post about a new feature launch.
+-   Business stakeholders want to know when their promised profits will start to materialize.
+-   Even within the team, a front-end developer needs to know when the promised APIs will be ready for integration.
+
+All these reasons demand an inevitable solution: somebody must provide some sort of estimation.
+
+### **Estimation Techniques: From Waterfall to Agile**
+
+#### **Waterfall: The Old School Approach**
+
+Veterans in the industry might remember the waterfall method, where every single task was planned upfront sequentially. This approach allowed for fancy Gantt charts, summary budgets, and colorful PowerPoints. However, from experience, it only works for tiny, perfectly defined projects with zero unknowns.
+
+Why? Because a project manager can't predict all the subtasks that will pop up as the project progresses, nor can they have all estimations perfectly aligned with reality. The more time invested in design and research, the more accurate it might be, but to be 100% accurate, you'd need to implement the entire product first!
+
+#### **Enter Agile: Embracing Uncertainty**
+
+Agile methodologies (SCRUM, Kanban, etc.) work in a more dynamic way without having everything planned upfront. These methods are more suitable for real-world, medium to large projects where there's always some degree of uncertainty and risk. Instead of planning all possible tasks before the first line of code is written, we plan and estimate a small portion and leave others at a higher level - since we may not even get to them, or they might change significantly.
+
+### **Estimation Units: Finding the Right Measure**
+
+![](/assets/posts/development-tasks-estimation-a-necessary-evil-or-valuable-tool/img-1.jpg)
+
+When it comes to estimating tasks, choosing the right unit of measurement is crucial. Different units serve different purposes and can be more or less effective depending on the context of your project and team dynamics. Let's explore the most common estimation units and their applications.
+
+#### **Time Units**
+
+Time units are the most intuitive and widely understood method of estimation. They typically come in two forms:
+
+##### **Working Hours/Days:**
+
+**‍**This approach specifies how many working hours or days a task will take. It's straightforward and easy to understand for both technical and non-technical stakeholders.
+
+Example: "_James estimated creating a DB for email sending service as 3 working days_"
+
+Pros:
+
+-   Direct correlation to effort and resource allocation
+-   Easy to translate into project timelines
+-   Familiar concept for stakeholders outside of development
+
+Cons:
+
+-   May not account for complexity or uncertainty
+-   Can create pressure to meet specific time commitments
+-   Doesn't factor in interruptions or multi-tasking
+
+##### **Start Date-Due Date**
+
+This method provides a range of calendar dates for task completion.
+
+Example: "_Sandra will work on training the network for kittens detection this entire week_"
+
+Pros:
+
+-   Gives clear expectations for delivery dates
+-   Accounts for non-working days and other scheduled commitments
+
+Cons:
+
+-   Less flexible for reprioritization
+-   May not reflect actual effort required
+-   Can be misleading if the assigned person isn't working full-time on the task
+
+##### **Story Points**
+
+Story points are abstract, relative units of work. They have no inherent meaning and are only relevant within the context of a team's empirical process.
+
+Example: "_A scrum team 'Rockstars' of 4 Senior Developers accomplish 20 story point-worth tasks every 2-weeks sprint on average_"
+
+Pros:
+
+-   Accounts for complexity and uncertainty, not just effort
+-   Encourages team discussion and consensus
+-   Flexible across different types of work (development, design, testing)
+-   Can improve over time as team calibrates their understanding
+
+Cons:
+
+-   Abstract concept, difficult for non-technical stakeholders to grasp
+-   Requires consistent team composition for accuracy
+-   Can be misused if treated as equivalent to time
+
+Example of story point evolution: "_Bryan has estimated a homepage as 5 story points and finished in 1 day. Before that, he did a homepage in 2 days and it was estimated as 10 story points_"
+
+This example shows how story points can be refined over time as the team gains experience and velocity.
+
+##### **T-Shirt Sizing**
+
+T-Shirt sizing is a quick, intuitive method using sizes like XS, S, M, L, XL to estimate tasks.
+
+Pros:
+
+-   Very fast for initial, rough estimations
+-   Intuitive even for non-technical stakeholders
+-   Useful for early-stage planning or high-level roadmapping
+
+Cons:
+
+-   Lacks precision for detailed planning
+-   Difficult to translate directly into timelines
+-   Subjective interpretation of sizes can vary between team members
+
+##### **Fibonacci Sequence**
+
+Some teams use the Fibonacci sequence (1, 2, 3, 5, 8, 13, 21...) for story points. This approach acknowledges that uncertainty increases with larger estimates.
+
+Pros:
+
+-   Forces differentiation between smaller tasks
+-   Reflects increasing uncertainty in larger tasks
+-   Can lead to more accurate relative sizing
+
+Cons:
+
+-   Can be confusing for newcomers to the method
+-   May lead to overthinking small differences in estimation
+
+#### **Choosing the Right Unit**
+
+The choice of estimation unit should depend on various factors:
+
+1.  Team experience: Newer teams might start with time-based estimates and move to story points as they gain experience.
+2.  Project phase: Early-stage projects might benefit from T-shirt sizing, while more mature projects could use story points or ideal days.
+3.  Stakeholder needs: External stakeholders might prefer time-based estimates, while internal teams could work better with story points.
+4.  Project methodology: Agile teams often prefer story points, while more traditional projects might use time-based estimates.
+
+Example of estimation disagreement: "_During the sprint planning, Alice provided an estimation for adding a caching mechanism to authorization as 5 story points, however Bob thought it would take only 3_"
+
+This example highlights the importance of team discussion in estimation. Such disagreements can lead to valuable conversations about task complexity, potential challenges, and different approaches to solving the problem.
+
+### **Estimation Techniques: Top-Down vs. Bottom-Up**
+
+When it comes to estimating tasks, two primary approaches stand out: top-down and bottom-up estimation. Each has its strengths and weaknesses, and understanding both can help you choose the right method for your project's needs.
+
+#### **Top-Down Estimation**
+
+Top-down estimation starts with a high-level view of the project or feature and then breaks it down into smaller components. This method is often used in the early stages of a project when details are scarce.
+
+Process:
+
+1.  Start with large, known tasks and assign ballpark figures based on experience or intuition.
+2.  Break these large tasks down into subtasks.
+3.  Assign estimates to subtasks as a proportion of the parent task's estimate.
+
+Example: Login page building - 10 story points
+
+-   UI - 50% (5 story points)
+-   Backend - 30% (3 story points)
+-   Testing - 20% (2 story points)
+
+Pros:
+
+1.  Speed: Quick to produce initial estimates for large projects.
+2.  Intuitive: Aligns with how many people naturally think about projects.
+3.  Collaboration-friendly: Facilitates team discussions and methods like Planning Poker.
+4.  Flexibility: Easily adjustable as more details emerge.
+5.  Big picture focus: Helps maintain perspective on overall project goals.
+
+Cons:
+
+1.  Less accuracy: Prone to overlooking complexities in subtasks.
+2.  Anchoring bias: Initial estimates can unduly influence subsequent breakdowns.
+3.  Lack of detail: May miss crucial small tasks that add up.
+4.  Experience-dependent: Requires significant domain knowledge for accuracy.
+
+Best used for:
+
+-   Early project planning stages
+-   High-level roadmapping
+-   Projects with many unknowns
+-   Quick, rough estimates for stakeholder discussions
+
+#### **Bottom-Up Estimation**
+
+Bottom-up estimation takes the opposite approach. It starts by breaking the project into the smallest possible tasks, estimating each individually, and then aggregating these estimates to arrive at the total.
+
+Process:
+
+1.  Break the project or feature into the smallest possible tasks.
+2.  Estimate each task individually.
+3.  Sum up the estimates to get totals for larger components and the overall project.
+
+Example: Login page building
+
+-   UI - 5 hours
+-   Backend - 3 hours
+-   Testing - 2 hours
+
+Total: Login page building 5+3+2 = 10 hours
+
+Pros:
+
+1.  Accuracy: Generally provides more precise estimates.
+2.  Detailed understanding: Forces a thorough analysis of the project.
+3.  Identifies complexities: Helps uncover hidden challenges early.
+4.  Easier tracking: Granular tasks are easier to monitor and update.
+5.  Less prone to oversight: Reduces the chance of missing critical tasks.
+
+Cons:
+
+1.  Time-consuming: Requires significant effort to break down and estimate each task.
+2.  Rigidity: Can be difficult to adjust if project scope changes.
+3.  Tunnel vision: May lose sight of the big picture.
+4.  Overwhelming: Can be daunting for large projects.
+
+Best used for:
+
+-   Well-defined projects with clear requirements
+-   Critical path tasks where accuracy is crucial
+-   Detailed project plans in later stages of planning
+
+#### **Hybrid Approach**
+
+In practice, many teams use a combination of top-down and bottom-up estimation. They might start with a top-down approach for initial planning, then switch to bottom-up as they delve into the details of each feature or sprint.
+
+Example of a hybrid approach:
+
+1.  Use top-down estimation to assign 10 story points to "Login page building".
+2.  As the sprint approaches, break it down bottom-up:some text
+    -   UI design: 2 hours
+    -   HTML/CSS implementation: 3 hours
+    -   Backend API: 2 hours
+    -   Database setup: 1 hour
+    -   Integration: 1 hour
+    -   Unit testing: 1 hour
+    -   Total: 10 hours
+
+This hybrid approach allows for both high-level planning and detailed execution estimates.
+
+#### **Choosing the Right Technique**
+
+The choice between top-down and bottom-up estimation (or a hybrid of both) depends on several factors:
+
+1.  Project phase: Top-down for early stages, bottom-up for detailed planning.
+2.  Available information: More details favor bottom-up estimation.
+3.  Time constraints: Limited time might necessitate top-down approach.
+4.  Project size: Larger projects might benefit from a hybrid approach.
+5.  Team experience: Experienced teams can often use top-down more effectively.
+
+#### **‍**
+
+### **The Practitioner's Approach: Balancing the Iron Triangle**
+
+![](/assets/posts/development-tasks-estimation-a-necessary-evil-or-valuable-tool/img-2.jpg)
+
+When stakeholders ask the all-too-familiar question, "When will it be done?", it's crucial to understand that this seemingly simple query touches on a fundamental concept in project management: the Iron Triangle, also known as the Project Management Triangle or Triple Constraint.
+
+The Iron Triangle consists of three key factors:
+
+1.  Scope: The features and functionality to be delivered
+2.  Resources: The team, budget, and tools available
+3.  Timeline: The deadline or timeframe for delivery
+
+The rule of thumb in project management is that you can only lock two of these factors, leaving the third flexible. Let's explore each scenario with real-world examples:
+
+#### **Fixed Resources + Fixed Timeline = Flexible Scope**
+
+In this scenario, you have a set team and a hard deadline, but you can adjust what gets delivered.
+
+Example: "_Want a delivery of the e-Commerce site on 1.1.2025 given a dedicated team including Bob, Alice and Jane? Probably the amount of features you're about to deliver will vary. Watch out for hard commitments on extra features like 'promotions' or 'reviews'_."
+
+In practice:
+
+-   Prioritize features ruthlessly
+-   Implement a Minimum Viable Product (MVP) approach
+-   Be prepared to cut or defer less critical features
+
+#### **Fixed Scope + Fixed Timeline = Flexible Resources**
+
+Here, you have a set list of features that must be delivered by a specific date, but you can adjust the resources as needed.
+
+Example: "_Want a delivery of the e-Commerce site including user registration, shopping cart, reviews and promotions on 1.1.2025? Start with Bob, Alice and Jane, be ready to add Mike and Sandra to the team._"
+
+In practice:
+
+-   Be prepared to add team members or extend working hours
+-   Consider outsourcing or bringing in specialists for specific tasks
+-   Invest in tools or technologies that can speed up development
+-   Be aware of the potential for decreased efficiency when adding new team members
+
+#### **Fixed Scope + Fixed Resources = Flexible Timeline**
+
+In this scenario, you have a set list of features and a dedicated team, but the delivery date can be adjusted.
+
+Example: "_Want a delivery of the e-Commerce site including user registration, shopping cart, reviews and promotions given a dedicated team including Bob, Alice and Jane? Expect it in the beginning of 2025, no hard commitment._"
+
+In practice:
+
+-   Provide regular updates on progress and revised completion estimates
+-   Use techniques like burn-down charts to visualize progress
+-   Consider breaking the project into phases or releases to deliver value incrementally
+-   Be transparent about uncertainties and potential roadblocks
+
+### **Making Estimations Work: Best Practices**
+
+1.  Learn from experience: Track your team's estimation accuracy over time.
+2.  Buffer for the unexpected: Account for bugs, sick days, and unforeseen challenges.
+3.  Be transparent: Communicate assumptions and constraints clearly.
+4.  Embrace uncertainty: Use ranges or confidence levels in your estimates.
+5.  Regularly re-evaluate: Update estimates as you learn more about the project.
+
+### **Conclusion**
+
+While perfect estimation remains an elusive goal, it's a necessary and valuable part of the development process. By understanding different techniques, being transparent about constraints, and learning from past experiences, we can make task estimation a useful tool rather than a dreaded chore. Remember, the goal isn't perfect accuracy, but rather providing valuable insights to guide project planning and stakeholder expectations.

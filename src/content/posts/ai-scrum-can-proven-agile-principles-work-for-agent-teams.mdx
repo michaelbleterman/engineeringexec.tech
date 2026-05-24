@@ -1,0 +1,162 @@
+---
+title: "AI-Scrum: Can Proven Agile Principles Work for Agent Teams?"
+slug: ai-scrum-can-proven-agile-principles-work-for-agent-teams
+date: 2026-05-23
+updated: 2026-03-04
+description: "Vibe coding gets you a prototype. It doesn't get you a production system. The missing piece isn't a better prompt - it's a structure. AI-Scrum is an experiment in running autonomous agent teams the way good engineering teams have always worked: defined roles, sprint cadence, QA loops and retrospectives that actually feed the next cycle. I ran it on a Node.js home finance project. Some of it worked surprisingly well. Some of it burned tokens on Playwright setup for what felt like forever. This post covers both."
+categories:
+  - "agile"
+tags: []
+heroImage: /assets/posts/ai-scrum-can-proven-agile-principles-work-for-agent-teams/hero.png
+heroAlt: "AI-Scrum: Can Proven Agile Principles Work for Agent Teams?"
+canonical: "https://engineeringexec.tech/posts/ai-scrum-can-proven-agile-principles-work-for-agent-teams"
+draft: false
+---
+
+In a [**previous post**](/posts/50-shades-of-agile-scrum-vs-kanban-vs-scrumban), we explored how Agile frameworks evolve to meet the realities of the teams using them. Scrum became Scrumban when the real world pushed back. Now the real world is pushing again, in the form of AI agents.
+
+The current wave of AI adoption in development has spawned a tempting misconception: that the future of R&D is the lone “vibe coder,” someone who prompts their way to a product. The problem? Software has always been a team sport. Someone has to catch what someone else missed. Someone has to ask whether this scales, whether it's secure, whether QA signed off. Vibe coding skips all of that. It's fast, it's fun and it collapses the moment real complexity hits.
+
+Another misconception is “everyone becomes a coder”. I say - “everyone becomes an R&D Manager”.
+
+The hypothesis behind AI-Scrum is straightforward: if Scrum’s discipline works for human teams delivering under uncertainty, why not apply it to a team of AI agents doing the same thing? This post documents the experiment: what was built, how it works and what the first real-world sprint actually revealed.
+
+_Disclaimer: this is an experiment, not a proven playbook. Honest observations included._
+
+## **How AI-Scrum Works**
+
+The framework ([github.com/michaelbleterman/ai-scrum](https://github.com/michaelbleterman/ai-scrum)) is project-agnostic: any codebase gets a **project\_tracking/** folder containing a backlog and sprint files, and plugs into a shared pool of specialized AI agents powered by the Google Agent Development Kit (ADK), glued by some python scripts, prompts/skills and hopes for a good.
+
+**Infrastructure note:** the framework requires a Google Cloud account with ADK API access. It’s a paid service. Unlike IDE-based AI tools constrained by a context window and your (paid?) subscription package, the agent runtime isn’t token-limited by your editor, but by your Google Cloud budget. It does create vendor lock-in to Google’s ecosystem though, which is worth factoring in before committing.
+
+### **The Agent Roster**
+
+Classic Scrum Role
+
+AI-Scrum Agent
+
+What It Does
+
+Scrum Master
+
+**Orchestrator**
+
+Coordinates agents, manages task dependencies
+
+Product Owner
+
+**Product Manager (PM)**
+
+Writes sprint backlog from human input
+
+Developer
+
+**Backend / Frontend / DevOps**
+
+Parallel domain implementation
+
+QA
+
+**QA Engineer**
+
+Test generation and defect detection loop
+
+_(New)_
+
+**Security Engineer**
+
+Automated security audit each sprint
+
+The human provides higher-level input (goals, constraints and priorities) and the PM agent translates that into a structured sprint file with role-tagged tasks (@Backend, @QA, etc.). This is a meaningful shift from traditional Scrum, where the Product Owner’s backlog grooming is a human responsibility. This is where your favourite AI-enabled IDE will shine: use the best model you can put your hands on and spend as much time as needed to get the best-detailed spec possible.
+
+**How a sprint runs:**
+
+-   Human provides sprint input (goals, context) → PM agent generates SPRINT\_N.md
+-   Orchestrator assigns tasks to agents by role; agents execute in parallel
+-   QA agent validates outputs; detected defects trigger an automated re-execution loop
+-   Sprint closes with auto-generated Demo Report and Retrospective (walk-through docs)
+-   Learnings persist in a ChromaDB vector store, so agents reference past sprint outcomes in future ones, the AI equivalent of tribal knowledge
+
+The human’s role is that of a virtual team manager: setting the sprint’s strategic intent, reviewing outputs at sprint-level granularity, tuning guardrails and feeding retrospective insights back into the next cycle. Less “IC with AI superpowers,” more “Scrum Master of a virtual team.”
+
+## **AI-Scrum vs. BMAD: Two Different Bets**
+
+BMAD (Breakthrough Method for Agile AI Driven Development, [github.com/bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD)) is the most prominent framework in this space, with 35k+ GitHub stars. It’s worth understanding how it differs.
+
+Dimension
+
+AI-Scrum
+
+BMAD
+
+**Philosophy**
+
+Autonomous sprint execution
+
+Supervised human-AI collaboration
+
+**Human role**
+
+Virtual team manager / orchestrator
+
+Active participant at every workflow step
+
+**Execution**
+
+Parallel autonomous agents
+
+Sequential guided workflows
+
+**Best for**
+
+Executing a defined backlog at speed
+
+Green-field planning with fuzzy requirements
+
+**Memory**
+
+Persistent ChromaDB across sprints
+
+Workflow state within session
+
+These frameworks aren’t really competing though. They’re complementary. BMAD excels at discovery and architecture phases, where the human’s judgment needs to be drawn out systematically before execution begins. AI-Scrum picks up from there, once the backlog is clear and the goal is throughput. A mature workflow might use both in sequence.
+
+## **First Real Sprint: The Home Finance App**
+
+To put AI-Scrum through its paces, I ran it on a pet project: a personal home finance management system built with Node.js, MongoDB and Playwright for UI testing. Small scope, real codebase, no guardrails on expectations. Here’s what the first few sprints taught me.
+
+**What worked well.**
+
+-   Parallel agent execution genuinely reduced clock time for well-scoped tasks. Backend and Frontend agents worked simultaneously without stepping on each other.
+-   The QA defect loop caught regressions that pure vibe coding would have missed entirely. Having a dedicated agent whose only job is to break things changes the quality dynamic.
+
+**What didn’t work (yet).**
+
+-   **Environment overhead is brutal.** Agents lost a significant number of turns and tokens on environment setup: package installations, Playwright configuration and path resolution issues. These are tasks that take a human developer 90 seconds and cost an agent 10+ turns of back-and-forth. On a small sprint, this overhead can dominate the token budget.
+-   **Stronger models help, but cost more.** Using more capable models (e.g., Gemini 2.5 Pro for the Orchestrator and QA) visibly reduced environment fumbling and improved task interpretation. The trade-off: token consumption scales up proportionally. There’s a real cost optimization loop to find here.
+-   **Ambiguity is punished.** Vague sprint input from the human produces vague PM agent output, which produces unpredictable agent work. The discipline of writing clear sprint goals is, if anything, more important than it is in human Scrum.
+
+The open question: how does this hold up on a larger, sustained codebase over 10+ sprints? The memory layer suggests the system should get better over time, but that hypothesis still needs real validation.
+
+## **Pros and Cons**
+
+**AI-Scrum works well if:**
+
+-   You have a reasonably well-defined backlog and the primary goal is execution velocity
+-   Your project has clear domain separation (backend / frontend / infra) that maps to agent roles
+-   You’re comfortable with Google ADK’s pricing model and ecosystem
+-   The environment is stable and well-documented. Agents handle ambiguous setups poorly
+
+**AI-Scrum suits less if:**
+
+-   The project is in the early ideation or architecture phase. Better to use BMAD or a human-led planning process first
+-   Budget is tight: environment-heavy sprints burn tokens fast, especially with stronger models
+-   You need IDE-native integration. This runs as an external script, not inside your editor
+
+## **Conclusion**
+
+AI-Scrum is a bet that the best patterns from 25 years of human team management (structured roles, time-boxed iterations and retrospective learning) translate meaningfully to agentic AI teams. Early evidence is encouraging, with real caveats around environment overhead and token economics.
+
+The broader point holds regardless of which framework wins out: the developers and managers who will thrive in the agentic era won’t be the best solo prompt engineers. They’ll be the ones who know how to structure, delegate and govern a team. Even if that team runs on tokens instead of salaries.
+
+_The framework is open source and actively evolving. Contributions, feedback and war stories from your own sprints are welcome at_ [_github.com/michaelbleterman/ai-scrum_](https://github.com/michaelbleterman/ai-scrum)_._
