@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
+  const categories = [...new Set(posts.flatMap((p) => p.data.categories))];
+  return categories.map((cat) => ({
+    params: { slug: cat },
+    props: {
+      category: cat,
+      posts: posts
+        .filter((p) => p.data.categories.includes(cat))
+        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+    },
+  }));
+}
+
+const { category, posts } = Astro.props;
+const title = category.charAt(0).toUpperCase() + category.slice(1);
+---
+
+<BaseLayout title={`${title} - EngineeringExec`} description={`Posts in ${title} category.`}>
+  <h1>{title}</h1>
+  <ul>
+    {posts.map((post) => (
+      <li>
+        <a href={`/posts/${post.data.slug}`}>{post.data.title}</a>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

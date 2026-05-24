@@ -1,0 +1,80 @@
+---
+title: "Don't Panic: A Hitchhiker's Guide to Handling Production Issues"
+slug: dont-panic-hitchhikers-guide-of-handling-issues-in-production
+date: 2024-07-23
+updated: 2024-07-22
+description: "It always comes on Friday evening or when you're on a family vacation: a Production issue. As an SRE Manager, you're the chosen one to save the day (or night). Grab your towel and let's try to keep your cool while firefighting the rogue applications and servers together with your team."
+categories:
+  - "sre"
+tags: []
+heroImage: /assets/posts/dont-panic-hitchhikers-guide-of-handling-issues-in-production/hero.jpg
+heroAlt: "Don't Panic: A Hitchhiker's Guide to Handling Production Issues"
+canonical: "https://engineeringexec.tech/posts/dont-panic-hitchhikers-guide-of-handling-issues-in-production"
+draft: false
+---
+
+Being in charge of Production environment stability is often one of the most stressful jobs a Manager can take. You rarely did something wrong, yet you're the one who must fix things ASAP (with multiple exclamation marks). Let's explore how to make this job less stressful.
+
+## **Monitoring and issue detection**
+
+The more severe the issue, the sooner you should know about it. If you hear about your main page being unavailable from a customer a day after it went down, something's wrong with your detection methods. However, getting a phone call at 2 AM because a CPU was at 90% for 5 minutes on one out of 10 servers in a cluster might be overkill.
+
+Ensure your shields are up at all times: Open Telemetry, APM alerts, CloudWatch connected to your house's doorbell, etc. Balance it so urgent matters wake you up, while minor issues appear in reports or dashboards.
+
+It's also good practice to work as a team and have a trusted "minuteman" who can be the first responder while you're away from your PC or enjoying a good night's sleep.
+
+## **Triage**
+
+When it happens – you get a call/Slack message/email about a Production incident – adrenaline starts rushing through your veins. First thing: don't panic!
+
+Luckily, you have your playbook ready, keeping you sane as you follow it step by step, letting nothing distract you.
+
+Start with the "triage" stage – a combat medicine term describing the initial evaluation of the injury and general direction of treatment. Here's a quick guide:
+
+### Critical
+
+**Possible causes**: servers down, main application unavailable, all or most of the users affected
+
+**Actions**: Immediate response, assign majority of resources, provide quick solution, analyze for permanent fix
+
+### **Major**
+
+**Possible causes**: significant server malfunctions, main application flows disrupted, multiple users affected
+
+**Actions**: Validate severity, quick action with limited resources, analyze quick vs. permanent solution, implement based on efficiency vs. speed
+
+### **Medium**
+
+**Possible causes**: hardware issues affecting functionality, some application flows not working as desired, multiple users having issues
+
+**Actions**: Validate severity, report it to the corresponding person/team
+
+### **Minor**
+
+**Possible causes**: some hardware metrics went off  without immediate effect, defect in secondary flow, few users reporting issues
+
+**Actions**: Validate severity, plan as regular priority, review reporting channel
+
+## **Critical issue handling**
+
+‍Ok, but it’s CRITICAL !!!11 What do we do now?
+
+1.  “_All hands on deck_” – Wake someone up or bring in help. Stay in charge but get assistance.
+2.  _Quick impact analysis_: Is it really "all down"? Is the application unavailable for everyone? Your summoned team can help verify quickly, e.g. “_John, please have a look if the site opens for you_”.
+3.  _Quick root cause analysis_: Check logs, metrics, and servers simultaneously with your team's help. Assign specific tasks (e.g., "Jane, analyze application traces; Ben, look at DB query stats").
+
+Utilize your team's troubleshooting skills and the "homework" you did setting up proper monitoring and tracing infrastructure.
+
+First to recognize the issue speaks up – don't wait to update others. Set up frequent update checkpoints to make sure nobody is stuck or maybe doing over-evaluation while having some valuable data already.
+
+<ol start="4" role="list"><li><em>Mitigation planning and execution</em>: Choose the fastest yet safest route to get the system working again. Rolling back a faulty software version is often quicker AND safer than pushing a fix. If you did your homework well - you know what to do and how to do it (restore DB, rollback the deployment, spin up new EC2 instance from AMI etc.). Get help from your team, assigning specific tasks.</li><li><em>Mitigation validation</em> - is the system up and running? Are the metrics back to green?&nbsp; Good. Relax, have a cup of coffee - the worst part is over. Send an issue report and rest.</li></ol>
+
+## **Issue report and post-mortem**
+
+Arguably, EVERY critical Production issue results from a chain of human errors (likely not yours or even your organization's).
+
+Proper root cause analysis reveals not "who's at fault" but what can prevent recurrence. You need complete data, so document every step in real-time. What server did you connect to? When did the first error appear in logs? What build number did you roll back from? Capture it all, just in time.
+
+Share findings with your team and others involved. Give them time (at least a couple of days) to analyze and provide insights. Then schedule a post-mortem session, which can be part of another meeting (e.g., sprint retrospective). Ensure all participants know about this agenda item and come prepared.
+
+Happy debugging!
