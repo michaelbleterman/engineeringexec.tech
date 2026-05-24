@@ -3,20 +3,45 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCard from "../../components/PostCard.astro";
 import { getCollection } from "astro:content";
 
-const categoryLabels: Record<string, string> = {
+const allCategoryLabels: Record<string, string> = {
   agile: "Agile",
   architecture: "Architecture",
-  security: "Security",
-  teammanagement: "Team Management",
-  "software-development": "Software Development",
-  "product-management": "Product Management",
+  cloud: "Cloud",
   devops: "DevOps",
+  misc: "Misc",
+  "product-management": "Product Management",
+  scrum: "Scrum",
+  security: "Security",
+  "software-development": "Software Development",
+  sre: "SRE",
+  teammanagement: "Team Management",
+  tech: "Tech",
+  travel: "Travel",
 };
 
 export async function getStaticPaths() {
+  const labels: Record<string, string> = {
+    agile: "Agile",
+    architecture: "Architecture",
+    cloud: "Cloud",
+    devops: "DevOps",
+    misc: "Misc",
+    "product-management": "Product Management",
+    scrum: "Scrum",
+    security: "Security",
+    "software-development": "Software Development",
+    sre: "SRE",
+    teammanagement: "Team Management",
+    tech: "Tech",
+    travel: "Travel",
+  };
+
   const posts = await getCollection("posts", ({ data }) => !data.draft);
-  const categories = [...new Set(posts.flatMap((p) => p.data.categories))];
-  return categories.map((cat) => ({
+  const allCategories = new Set([
+    ...Object.keys(labels),
+    ...posts.flatMap((p) => p.data.categories),
+  ]);
+  return [...allCategories].map((cat) => ({
     params: { slug: cat },
     props: {
       category: cat,
@@ -28,18 +53,22 @@ export async function getStaticPaths() {
 }
 
 const { category, posts } = Astro.props;
-const displayName = categoryLabels[category] || category.charAt(0).toUpperCase() + category.slice(1);
+const displayName = allCategoryLabels[category] || category.charAt(0).toUpperCase() + category.slice(1);
 ---
 
 <BaseLayout title={`${displayName} - EngineeringExec`} description={`Posts in ${displayName} category.`}>
   <h1 class="category-title">{displayName}</h1>
-  {posts.map((post) => (
-    <PostCard
-      title={post.data.title}
-      slug={post.data.slug}
-      date={post.data.date}
-      categories={post.data.categories}
-      description={post.data.description}
-    />
-  ))}
+  {posts.length === 0 ? (
+    <p>No items found.</p>
+  ) : (
+    posts.map((post) => (
+      <PostCard
+        title={post.data.title}
+        slug={post.data.slug}
+        date={post.data.date}
+        categories={post.data.categories}
+        description={post.data.description}
+      />
+    ))
+  )}
 </BaseLayout>
