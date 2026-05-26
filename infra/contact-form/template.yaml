@@ -41,7 +41,7 @@ Resources:
               Action:
                 - ses:SendEmail
               Resource:
-                - !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/engineeringexec.tech
+                - !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/*
             - Sid: ReadContactFormSSMParams
               Effect: Allow
               Action:
