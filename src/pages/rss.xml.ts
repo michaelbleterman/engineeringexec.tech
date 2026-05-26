@@ -1,5 +1,6 @@
 import type { APIContext } from "astro";
 
 export async function GET(context: APIContext) {
-  return context.redirect("/posts/rss.xml", 301);
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return context.redirect(`${base}/posts/rss.xml`, 301);
 }

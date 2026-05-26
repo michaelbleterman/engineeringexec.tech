@@ -19,13 +19,14 @@ Resources:
       Environment:
         Variables:
           RECAPTCHA_SCORE_THRESHOLD: "0.5"
-          ALLOWED_ORIGINS: "https://engineeringexec.tech,https://www.engineeringexec.tech,http://localhost:4321"
+          ALLOWED_ORIGINS: "https://engineeringexec.tech,https://www.engineeringexec.tech,https://michaelbleterman.github.io,http://localhost:4321"
       FunctionUrlConfig:
         AuthType: NONE
         Cors:
           AllowOrigins:
             - https://engineeringexec.tech
             - https://www.engineeringexec.tech
+            - https://michaelbleterman.github.io
             - http://localhost:4321
           AllowMethods:
             - POST
