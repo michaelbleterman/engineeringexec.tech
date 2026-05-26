@@ -35,7 +35,7 @@ const navLinks = [
       {navLinks.map(({ href, label }) => (
         <a
           href={href}
-          class:list={["nav-link", { active: path === href || (href !== "/" && path.startsWith(href)) }]}
+          class:list={["nav-link", { active: path === href || (href !== `${base}/` && path.startsWith(href)) }]}
         >
           {label}
         </a>
