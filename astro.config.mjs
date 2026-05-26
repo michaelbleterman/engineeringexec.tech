@@ -4,7 +4,8 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://engineeringexec.tech",
+  site: process.env.ASTRO_SITE || "https://engineeringexec.tech",
+  base: process.env.ASTRO_BASE || "",
   trailingSlash: "never",
   integrations: [mdx(), sitemap()],
 });

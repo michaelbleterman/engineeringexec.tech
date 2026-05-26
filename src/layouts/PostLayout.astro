@@ -31,6 +31,7 @@ const {
 
 const siteUrl = Astro.site?.origin ?? "https://engineeringexec.tech";
 const canonicalUrl = canonical ?? `${siteUrl}/posts/${slug}`;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const categoryLabels: Record<string, string> = {
   agile: "Agile",
@@ -94,7 +95,7 @@ const jsonLd = {
             {categories.map((cat, i) => (
               <>
                 {i > 0 && <span>, </span>}
-                <a href={`/categories/${cat}`}>
+                <a href={`${base}/categories/${cat}`}>
                   {categoryLabels[cat] || cat.charAt(0).toUpperCase() + cat.slice(1)}
                 </a>
               </>
@@ -119,7 +120,7 @@ const jsonLd = {
     )}
 
     <div class="post-footer">
-      <a href="/all-posts" class="back-to-posts">← View all posts</a>
+      <a href={`${base}/all-posts`} class="back-to-posts">← View all posts</a>
     </div>
   </article>
 </BaseLayout>

@@ -23,7 +23,7 @@ const hasMore = allPosts.length > 5;
 
   {hasMore && (
     <div class="more-posts-wrapper">
-      <a href="/all-posts" class="more-posts-link">More posts →</a>
+      <a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/all-posts`} class="more-posts-link">More posts →</a>
     </div>
   )}
 </BaseLayout>

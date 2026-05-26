@@ -11,13 +11,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <h2>Who I Am</h2>
     <p>This website, <strong>engineeringexec.tech</strong>, is a personal blog run by <strong>Michael Bleterman</strong>. It's a non-commercial project where I share thoughts on engineering leadership, software architecture, and R&D management.</p>
     <p><strong>Contact:</strong><br />
-    You can reach me via the <a href="/contact">Contact</a> page, or through my social profiles:</p>
+    You can reach me via the <a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/contact`}>Contact</a> page, or through my social profiles:</p>
     <ul>
       <li><a href="https://www.linkedin.com/in/michaelbleterman/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
       <li><a href="https://github.com/michaelbleterman" target="_blank" rel="noopener noreferrer">GitHub</a></li>
       <li><a href="https://www.facebook.com/michael.bleterman" target="_blank" rel="noopener noreferrer">Facebook</a></li>
     </ul>
-    <p>For any privacy-related requests, please use the contact form on the <a href="/contact">Contact</a> page with the subject "Privacy Request."</p>
+    <p>For any privacy-related requests, please use the contact form on the <a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/contact`}>Contact</a> page with the subject "Privacy Request."</p>
     <hr />
 
     <h2>What Data I Collect and Why</h2>
@@ -33,7 +33,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <p><strong>Legal basis:</strong> Your consent (via the cookie banner).</p>
 
     <h3>Contact Form</h3>
-    <p>If you reach out through the <a href="/contact">Contact</a> page, I collect the information you provide: your <strong>name</strong>, <strong>email address</strong>, and <strong>message</strong>.</p>
+    <p>If you reach out through the <a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/contact`}>Contact</a> page, I collect the information you provide: your <strong>name</strong>, <strong>email address</strong>, and <strong>message</strong>.</p>
     <p><strong>Data collected:</strong> only what you voluntarily submit.</p>
     <p><strong>Purpose:</strong> to respond to your inquiry.</p>
     <p><strong>Legal basis:</strong> Your consent (by submitting the form). I will not use your contact information for marketing or share it with third parties.</p>
@@ -117,7 +117,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <li><strong>Data portability</strong> — request your data in a structured, machine-readable format</li>
       <li><strong>Withdraw consent</strong> — withdraw your cookie consent at any time via the cookie settings icon, or contact me for other data</li>
     </ul>
-    <p>To exercise any of these rights, please reach out via the <a href="/contact">Contact</a> page. I will respond within 30 days.</p>
+    <p>To exercise any of these rights, please reach out via the <a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/contact`}>Contact</a> page. I will respond within 30 days.</p>
     <hr />
 
     <h2>Data Sharing</h2>
@@ -133,6 +133,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <hr />
 
     <h2>Questions?</h2>
-    <p>If you have any questions about this policy or how your data is handled, please reach out via the <a href="/contact">Contact</a> page.</p>
+    <p>If you have any questions about this policy or how your data is handled, please reach out via the <a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/contact`}>Contact</a> page.</p>
   </div>
 </BaseLayout>

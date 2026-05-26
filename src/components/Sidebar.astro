@@ -5,18 +5,19 @@ interface Props {
 
 const { currentPath = "" } = Astro.props;
 const path = currentPath || Astro.url.pathname;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/all-posts", label: "All Posts" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: `${base}/`, label: "Home" },
+  { href: `${base}/all-posts`, label: "All Posts" },
+  { href: `${base}/about`, label: "About" },
+  { href: `${base}/contact`, label: "Contact" },
 ];
 ---
 
 <aside class="sidebar">
   <div class="sidebar-inner">
-    <a href="/" class="site-title">
+    <a href={`${base}/`} class="site-title">
       <h1>EngineeringExec</h1>
     </a>
 
@@ -57,7 +58,7 @@ const navLinks = [
 
     <div class="sidebar-footer">
       <p class="copyright">&copy; {new Date().getFullYear()} Michael Bleterman. All rights reserved</p>
-      <a href="/privacy-policy" class="privacy-link">Privacy Policy</a>
+      <a href={`${base}/privacy-policy`} class="privacy-link">Privacy Policy</a>
     </div>
   </div>
 </aside>
