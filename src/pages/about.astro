@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="About Michael Bleterman | EngineeringExec" description="About EngineeringExec - engineering leadership insights from a practitioner.">
-  <img src="/assets/about/michael-bleterman.jpg" alt="Michael Bleterman" class="about-photo" />
+  <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/assets/about/michael-bleterman.jpg`} alt="Michael Bleterman" class="about-photo" />
 
   <h1 class="page-title">About me</h1>
 
@@ -47,5 +47,5 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </p>
   </div>
 
-  <a href="/contact" class="cta-button">Get in touch</a>
+  <a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/contact`} class="cta-button">Get in touch</a>
 </BaseLayout>

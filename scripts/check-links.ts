@@ -13,6 +13,7 @@ import { readdirSync, readFileSync, statSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 const distDir = resolve(process.cwd(), "dist");
+const basePath = (process.env.ASTRO_BASE || "").replace(/\/$/, "");
 
 if (!existsSync(distDir)) {
   console.error("Build output not found. Run 'npm run build' first.");
@@ -41,7 +42,11 @@ for (const file of htmlFiles) {
   const content = readFileSync(file, "utf-8");
   let match: RegExpExecArray | null;
   while ((match = hrefPattern.exec(content)) !== null) {
-    const href = match[1];
+    let href = match[1];
+    // Strip base path prefix for local file resolution
+    if (basePath && href.startsWith(basePath)) {
+      href = href.slice(basePath.length) || "/";
+    }
     // Check if the target exists as a file or directory with index.html
     const candidates = [
       join(distDir, href),
