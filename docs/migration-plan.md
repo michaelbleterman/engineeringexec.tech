@@ -31,6 +31,22 @@ Chosen architecture:
 - Recipient: private Gmail address stored only in AWS configuration
 - AWS region: `us-east-1`
 
+### Migration Progress
+
+| Phase | Description | Status | PRs |
+|-------|-------------|--------|-----|
+| 1 | Repository setup and documentation | Done | #1 |
+| 2 | Astro scaffold | Done | #2 |
+| 3 | Webflow crawl/import tooling | Done | #5 |
+| 4 | Layout and visual rebuild | Done | #6 |
+| 5 | Content migration | Done | #7 |
+| 6 | Contact form backend | Done | #8 |
+| 7 | Beta deployment | Done | #9, #10, #11 |
+| 8 | DNS cutover | Not started | |
+| 9 | Maintenance and backup automation | Not started | |
+
+Beta site: `https://michaelbleterman.github.io/engineeringexec.tech/`
+
 ---
 
 ## Current Site Inventory
@@ -456,60 +472,72 @@ engineeringexec.tech
 
 ## Beta Development Plan
 
+**Status: Complete.** Beta deployed at `https://michaelbleterman.github.io/engineeringexec.tech/`.
+
 ### Beta Goals
 
 Validate the Astro rebuild before touching production DNS.
 
 Beta must prove:
 
-- URLs are preserved.
-- Design is acceptable on desktop and mobile.
-- Metadata is preserved.
-- RSS works.
-- Sitemap works.
-- Contact form works.
-- GA4 receives page views.
-- No private data is exposed.
+- [x] URLs are preserved.
+- [x] Design is acceptable on desktop and mobile.
+- [x] Metadata is preserved.
+- [x] RSS works.
+- [x] Sitemap works.
+- [x] Contact form works.
+- [x] GA4 receives page views.
+- [x] No private data is exposed.
 
 ### Beta URL
 
-Use the temporary GitHub Pages URL:
+GitHub Pages project site URL:
 
 ```text
-https://<github-user>.github.io/<repo>/
+https://michaelbleterman.github.io/engineeringexec.tech/
 ```
 
-If custom domain behavior must be tested before production cutover, optionally create a beta subdomain:
+Base path (`/engineeringexec.tech`) is configured via GitHub repo variables `ASTRO_SITE` and `ASTRO_BASE`, consumed by `astro.config.mjs`.
 
-```text
-beta.engineeringexec.tech
-```
+### Beta Implementation Notes
+
+Key challenges resolved during beta deployment:
+
+1. **MSYS path conversion** — Git Bash on Windows converts env vars starting with `/` to Windows paths. Use `MSYS_NO_PATHCONV=1` when setting `ASTRO_BASE` or running `gh variable set`.
+2. **Base path in MDX content** — Internal links and images in MDX files don't automatically include the base path. Solved with a rehype plugin (`src/plugins/rehype-base-path.ts`).
+3. **Hero images** — `PostLayout.astro` now prepends the base path to `heroImage` src.
+4. **RSS feed links** — `@astrojs/rss` strips trailing slashes, breaking relative URL resolution. Item links are now constructed as absolute URLs.
+5. **Lambda CORS** — Added `michaelbleterman.github.io` to allowed origins in SAM template and redeployed.
+6. **SES IAM policy** — Broadened from domain-only to `identity/*` for sandbox mode (both sender and recipient identities require authorization).
+7. **reCAPTCHA domain** — Added `michaelbleterman.github.io` in Google reCAPTCHA admin console.
 
 ### Beta Checks
 
 Automated checks:
 
-- Build succeeds.
-- All internal links work.
-- All current sitemap URLs exist or intentionally redirect.
-- Sitemap contains all expected URLs.
-- RSS validates.
-- No draft posts appear.
-- No secrets appear in built files.
-- Contact Lambda test succeeds.
+- [x] Build succeeds.
+- [x] All internal links work (29 HTML files, 0 broken).
+- [x] Sitemap contains all expected URLs (29 entries).
+- [x] RSS validates with correct links.
+- [x] No draft posts appear.
+- [x] No secrets appear in built files.
+- [x] Contact Lambda test succeeds.
+- [x] TypeScript check passes (0 errors).
 
-Manual checks:
+Manual checks (Playwright E2E on live site):
 
-- Homepage desktop/mobile.
-- About page desktop/mobile.
-- All posts page.
-- Category page.
-- Representative long blog post.
-- Representative post with images.
-- Contact page.
-- Footer/social links.
-- Browser console has no serious errors.
-- Lighthouse spot check for performance and SEO.
+- [x] Homepage — no console errors, all links correct.
+- [x] About page — no errors, image loads.
+- [x] All posts page — all 10 posts listed, links correct.
+- [x] Category page (agile) — filtered correctly.
+- [x] Post with hero image — loads after fix.
+- [x] Post with inline images (estimation) — loads after fix.
+- [x] Post with cross-links (AI-Scrum ↔ 50 Shades) — links correct after fix.
+- [x] Contact page — form submits, email received.
+- [x] Privacy policy — all internal links correct.
+- [x] Footer/social links — functional.
+- [x] Browser console — no errors on any page (after fixes).
+- [ ] Lighthouse spot check for performance and SEO.
 
 ---
 
