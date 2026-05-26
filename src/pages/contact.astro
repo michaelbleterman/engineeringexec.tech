@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY;
+const CONTACT_API_URL = import.meta.env.PUBLIC_CONTACT_API_URL;
 ---
 
 <BaseLayout title="Contact - EngineeringExec" description="Get in touch.">
@@ -26,6 +29,63 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <input type="text" name="honeypot" tabindex="-1" autocomplete="off" />
     </div>
 
-    <button class="form-submit" type="submit">Submit</button>
+    <div id="form-status" class="form-status" role="alert"></div>
+
+    <button class="form-submit" type="submit" id="submit-btn">Submit</button>
   </form>
+
+  <script define:vars={{ RECAPTCHA_SITE_KEY, CONTACT_API_URL }}>
+    // Load reCAPTCHA v3 script
+    const script = document.createElement("script");
+    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+    document.head.appendChild(script);
+
+    const form = document.getElementById("contact-form");
+    const statusEl = document.getElementById("form-status");
+    const submitBtn = document.getElementById("submit-btn");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusEl.textContent = "";
+      statusEl.className = "form-status";
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+
+      try {
+        const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: "contact" });
+
+        const payload = {
+          name: form.name.value.trim(),
+          email: form.email.value.trim(),
+          message: form.message.value.trim(),
+          recaptchaToken: token,
+          honeypot: form.honeypot.value,
+          page: window.location.href,
+        };
+
+        const resp = await fetch(CONTACT_API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await resp.json();
+
+        if (resp.ok) {
+          statusEl.textContent = data.message || "Thank you for your message.";
+          statusEl.className = "form-status form-status--success";
+          form.reset();
+        } else {
+          statusEl.textContent = data.error || "Something went wrong. Please try again.";
+          statusEl.className = "form-status form-status--error";
+        }
+      } catch (err) {
+        statusEl.textContent = "Network error. Please check your connection and try again.";
+        statusEl.className = "form-status form-status--error";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit";
+      }
+    });
+  </script>
 </BaseLayout>

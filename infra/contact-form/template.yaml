@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: EngineeringExec contact form — Lambda Function URL + Amazon SES
+
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 128
+    Runtime: python3.12
+
+Resources:
+  ContactFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.lambda_handler
+      CodeUri: src/
+      Description: Handles contact form submissions and sends email via SES
+      ReservedConcurrentExecutions: 5
+      Environment:
+        Variables:
+          RECAPTCHA_SCORE_THRESHOLD: "0.5"
+          ALLOWED_ORIGINS: "https://engineeringexec.tech,https://www.engineeringexec.tech,http://localhost:4321"
+      FunctionUrlConfig:
+        AuthType: NONE
+        Cors:
+          AllowOrigins:
+            - https://engineeringexec.tech
+            - https://www.engineeringexec.tech
+            - http://localhost:4321
+          AllowMethods:
+            - POST
+          AllowHeaders:
+            - Content-Type
+          MaxAge: 86400
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+            - Sid: SendEmailFromVerifiedIdentities
+              Effect: Allow
+              Action:
+                - ses:SendEmail
+              Resource:
+                - !Sub arn:aws:ses:${AWS::Region}:${AWS::AccountId}:identity/engineeringexec.tech
+            - Sid: ReadContactFormSSMParams
+              Effect: Allow
+              Action:
+                - ssm:GetParameter
+              Resource:
+                - !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/engineeringexec/contact/recaptcha_secret
+                - !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/engineeringexec/contact/recipient_email
+                - !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/engineeringexec/contact/sender_email
+
+Outputs:
+  ContactFunctionUrl:
+    Description: Lambda Function URL for contact form
+    Value: !GetAtt ContactFunctionUrl.FunctionUrl
+  ContactFunctionArn:
+    Description: Contact Lambda function ARN
+    Value: !GetAtt ContactFunction.Arn

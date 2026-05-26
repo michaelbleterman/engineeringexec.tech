@@ -597,6 +597,24 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--color-text);
 }
 
+.form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-status {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.form-status--success {
+  color: #2e7d32;
+}
+
+.form-status--error {
+  color: #c62828;
+}
+
 /* ===== Category Page ===== */
 .category-title {
   font-size: 36px;
