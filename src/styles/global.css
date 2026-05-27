@@ -110,10 +110,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .site-bio {
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--color-sidebar-text);
-  margin-bottom: var(--space-md);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--color-sidebar-heading);
+  margin-bottom: 20px;
 }
 
 .site-bio strong {
@@ -122,8 +123,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .sidebar-divider {
   border: none;
-  border-top: 1px solid #555;
-  margin: var(--space-lg) 0;
+  border-top: 1px solid #5e5e5e;
+  width: 50%;
+  margin: 20px 0;
 }
 
 /* ===== Sidebar Navigation ===== */
@@ -293,11 +295,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .more-posts-link {
   display: inline-block;
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 16px;
+  font-weight: 400;
   color: var(--color-text);
-  border: 1px solid #d3d3d3;
-  padding: 10px 24px;
+  border: none;
+  border-radius: 3px;
+  padding: 11px 20px;
+  box-shadow: 0 0 0 1px #ddd;
   text-decoration: none;
   transition: border-color 0.2s;
 }
@@ -309,7 +313,9 @@ h1, h2, h3, h4, h5, h6 {
 /* ===== Blog Post (single view) ===== */
 .post-header {
   text-align: center;
-  margin-bottom: var(--space-2xl);
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 0.8px solid #dadada;
 }
 
 .post-title {
@@ -349,7 +355,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ===== Post Body ===== */
 .post-content {
   font-size: 14px;
-  line-height: 1.44;
+  line-height: 1.6;
   color: var(--color-text);
 }
 
@@ -461,11 +467,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .back-to-posts {
   display: inline-block;
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 16px;
+  font-weight: 400;
   color: var(--color-text);
-  border: 1px solid #d3d3d3;
-  padding: 10px 24px;
+  border: none;
+  border-radius: 3px;
+  padding: 11px 20px;
+  box-shadow: 0 0 0 1px #ddd;
   text-decoration: none;
   transition: border-color 0.2s;
 }
@@ -514,21 +522,21 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ===== Page Title (About, Contact, etc.) ===== */
 .page-title {
-  font-size: 36px;
-  font-weight: 300;
+  font-size: 35px;
+  font-weight: 600;
   line-height: 1.2;
   margin-bottom: var(--space-2xl);
 }
 
 /* ===== About Page ===== */
 .about-photo {
-  max-width: 260px;
+  max-width: 220px;
   margin-bottom: var(--space-xl);
 }
 
 .about-content {
-  font-size: 16px;
-  line-height: 1.8;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .about-content p {
@@ -562,7 +570,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ===== Contact Form ===== */
 .contact-form {
-  max-width: 640px;
+  max-width: 100%;
 }
 
 .form-group {
@@ -572,7 +580,7 @@ h1, h2, h3, h4, h5, h6 {
 .form-label {
   display: block;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--color-text);
@@ -584,9 +592,9 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   font-family: var(--font-body);
   font-size: 14px;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 0;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
   color: var(--color-text);
   background: var(--color-bg);
   transition: border-color 0.2s;
@@ -599,19 +607,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-textarea {
-  min-height: 150px;
+  min-height: 110px;
   resize: vertical;
 }
 
 .form-submit {
   display: inline-block;
   font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 16px;
+  font-weight: 400;
   color: var(--color-text);
   background-color: #fff;
-  border: 1px solid #d3d3d3;
-  padding: 10px 24px;
+  border: none;
+  border-radius: 3px;
+  padding: 11px 20px;
+  box-shadow: 0 0 0 1px #ddd;
   cursor: pointer;
   transition: border-color 0.2s;
 }
@@ -647,7 +657,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ===== All Posts Page ===== */
 .all-posts-title {
-  font-size: 36px;
+  font-size: 25px;
   font-weight: 300;
   margin-bottom: var(--space-xl);
 }
