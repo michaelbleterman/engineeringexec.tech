@@ -339,8 +339,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-image {
+  display: block;
   margin: 0 auto var(--space-2xl);
-  max-width: 100%;
+  max-width: 60%;
   border-radius: 4px;
 }
 
