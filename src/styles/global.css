@@ -274,6 +274,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-text);
   border: 1px solid #d3d3d3;
   padding: 5px 12px;
+  border-radius: 20px;
   text-decoration: none;
   transition: border-color 0.2s;
 }
