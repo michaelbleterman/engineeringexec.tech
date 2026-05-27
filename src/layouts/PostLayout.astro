@@ -106,13 +106,13 @@ const jsonLd = {
       </div>
     </header>
 
-    <div class="sharethis-inline-share-buttons"></div>
-
     {heroImage && <img src={`${base}${heroImage}`} alt={heroAlt ?? ""} class="hero-image" />}
 
     <div class="post-content">
       <slot />
     </div>
+
+    <div class="sharethis-inline-share-buttons"></div>
 
     {tags.length > 0 && (
       <ul class="tags">
