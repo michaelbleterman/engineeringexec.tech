@@ -32,41 +32,13 @@ The framework ([github.com/michaelbleterman/ai-scrum](https://github.com/michael
 
 ### **The Agent Roster**
 
-Classic Scrum Role
-
-AI-Scrum Agent
-
-What It Does
-
-Scrum Master
-
-**Orchestrator**
-
-Coordinates agents, manages task dependencies
-
-Product Owner
-
-**Product Manager (PM)**
-
-Writes sprint backlog from human input
-
-Developer
-
-**Backend / Frontend / DevOps**
-
-Parallel domain implementation
-
-QA
-
-**QA Engineer**
-
-Test generation and defect detection loop
-
-_(New)_
-
-**Security Engineer**
-
-Automated security audit each sprint
+| Classic Scrum Role | AI-Scrum Agent | What It Does |
+|---|---|---|
+| Scrum Master | **Orchestrator** | Coordinates agents, manages task dependencies |
+| Product Owner | **Product Manager (PM)** | Writes sprint backlog from human input |
+| Developer | **Backend / Frontend / DevOps** | Parallel domain implementation |
+| QA | **QA Engineer** | Test generation and defect detection loop |
+| _(New)_ | **Security Engineer** | Automated security audit each sprint |
 
 The human provides higher-level input (goals, constraints and priorities) and the PM agent translates that into a structured sprint file with role-tagged tasks (@Backend, @QA, etc.). This is a meaningful shift from traditional Scrum, where the Product Owner’s backlog grooming is a human responsibility. This is where your favourite AI-enabled IDE will shine: use the best model you can put your hands on and spend as much time as needed to get the best-detailed spec possible.
 
@@ -84,41 +56,13 @@ The human’s role is that of a virtual team manager: setting the sprint’s str
 
 BMAD (Breakthrough Method for Agile AI Driven Development, [github.com/bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD)) is the most prominent framework in this space, with 35k+ GitHub stars. It’s worth understanding how it differs.
 
-Dimension
-
-AI-Scrum
-
-BMAD
-
-**Philosophy**
-
-Autonomous sprint execution
-
-Supervised human-AI collaboration
-
-**Human role**
-
-Virtual team manager / orchestrator
-
-Active participant at every workflow step
-
-**Execution**
-
-Parallel autonomous agents
-
-Sequential guided workflows
-
-**Best for**
-
-Executing a defined backlog at speed
-
-Green-field planning with fuzzy requirements
-
-**Memory**
-
-Persistent ChromaDB across sprints
-
-Workflow state within session
+| Dimension | AI-Scrum | BMAD |
+|---|---|---|
+| **Philosophy** | Autonomous sprint execution | Supervised human-AI collaboration |
+| **Human role** | Virtual team manager / orchestrator | Active participant at every workflow step |
+| **Execution** | Parallel autonomous agents | Sequential guided workflows |
+| **Best for** | Executing a defined backlog at speed | Green-field planning with fuzzy requirements |
+| **Memory** | Persistent ChromaDB across sprints | Workflow state within session |
 
 These frameworks aren’t really competing though. They’re complementary. BMAD excels at discovery and architecture phases, where the human’s judgment needs to be drawn out systematically before execution begins. AI-Scrum picks up from there, once the backlog is clear and the goal is throughput. A mature workflow might use both in sequence.
 
