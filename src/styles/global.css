@@ -15,19 +15,20 @@
   --color-text-muted: #9b9b9b;
   --color-link: #1a8917;
   --color-link-hover: #333;
+  --color-content-link: #24a7ff;
   --color-border: #e0e0e0;
   --color-sidebar-bg: #333;
   --color-sidebar-text: #9b9b9b;
   --color-sidebar-heading: #f0f0f0;
   --color-sidebar-link: #9b9b9b;
-  --color-sidebar-link-active: #fff;
+  --color-sidebar-link-active: #ebebeb;
 
   --font-body: Arial, sans-serif;
   --font-heading: Arial, sans-serif;
 
-  --sidebar-width: 270px;
+  --sidebar-width: 360px;
   --content-max-width: 940px;
-  --content-padding: 60px;
+  --content-padding: 50px;
 
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
@@ -88,7 +89,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sidebar-inner {
-  padding: 50px 30px 50px 30px;
+  padding: 50px 40px 50px 30px;
   display: flex;
   flex-direction: column;
   min-height: 100%;
@@ -195,7 +196,6 @@ h1, h2, h3, h4, h5, h6 {
 .main-content {
   margin-left: var(--sidebar-width);
   flex: 1;
-  max-width: var(--content-max-width);
   padding: var(--content-padding);
 }
 
@@ -261,8 +261,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .post-card-excerpt {
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.44;
   color: var(--color-text);
   margin-bottom: var(--space-md);
 }
@@ -273,7 +273,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
   color: var(--color-text);
   border: 1px solid #d3d3d3;
-  padding: 8px 16px;
+  padding: 5px 12px;
   text-decoration: none;
   transition: border-color 0.2s;
 }
@@ -345,8 +345,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ===== Post Body ===== */
 .post-content {
-  font-size: 16px;
-  line-height: 1.8;
+  font-size: 14px;
+  line-height: 1.44;
   color: var(--color-text);
 }
 
@@ -408,13 +408,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .post-content img {
+  max-width: 100%;
+  border-radius: 3px;
+  display: inline-block;
   margin: var(--space-lg) auto;
-  border-radius: 4px;
 }
 
 .post-content a {
-  color: var(--color-link);
-  text-decoration: underline;
+  color: var(--color-content-link);
+  text-decoration: none;
 }
 
 .post-content a:hover {
@@ -427,6 +429,24 @@ h1, h2, h3, h4, h5, h6 {
 
 .post-content em {
   font-style: italic;
+}
+
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.post-content th {
+  padding: 10px 14px;
+  font-weight: 700;
+  border: 0.8px solid #ccc;
+  text-align: left;
+}
+
+.post-content td {
+  padding: 10px 14px;
+  border: 0.8px solid #ccc;
 }
 
 /* ===== Post Footer ===== */
@@ -585,8 +605,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 300;
-  color: var(--color-link);
-  background: var(--color-bg);
+  color: var(--color-text);
+  background-color: #fff;
   border: 1px solid #d3d3d3;
   padding: 10px 24px;
   cursor: pointer;
