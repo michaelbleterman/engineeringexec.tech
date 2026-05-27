@@ -10,7 +10,7 @@ const posts = allPosts.slice(0, 5);
 const hasMore = allPosts.length > 5;
 ---
 
-<BaseLayout title="EngineeringExec - practitioner's blog">
+<BaseLayout title="EngineeringExec - practitioner's blog" description="Michael Bleterman's blog about Software Development, Management and things in-between. I share from my knowledge as an Architect, SCRUM master and a humble programmer.">
   {posts.map((post) => (
     <PostCard
       title={post.data.title}

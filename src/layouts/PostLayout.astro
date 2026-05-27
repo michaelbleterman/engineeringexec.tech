@@ -62,12 +62,12 @@ const jsonLd = {
   author: {
     "@type": "Person",
     name: "Michael Bleterman",
-    url: `${siteUrl}/about`,
+    url: "https://engineeringexec.tech/about",
   },
   publisher: {
     "@type": "Organization",
     name: "EngineeringExec",
-    url: siteUrl,
+    url: "https://engineeringexec.tech",
   },
   mainEntityOfPage: {
     "@type": "WebPage",
@@ -82,6 +82,7 @@ const jsonLd = {
   description={description}
   canonical={canonicalUrl}
   ogImage={ogImage}
+  ogType="article"
   jsonLd={jsonLd}
 >
   <article>
@@ -104,6 +105,8 @@ const jsonLd = {
         )}
       </div>
     </header>
+
+    <div class="sharethis-inline-share-buttons"></div>
 
     {heroImage && <img src={`${base}${heroImage}`} alt={heroAlt ?? ""} class="hero-image" />}
 
