@@ -134,9 +134,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-link {
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 1px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   color: var(--color-sidebar-link);
   text-decoration: none;
@@ -181,8 +181,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .privacy-link {
-  font-size: 11px;
-  letter-spacing: 1px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   color: var(--color-sidebar-text);
   text-decoration: none;
