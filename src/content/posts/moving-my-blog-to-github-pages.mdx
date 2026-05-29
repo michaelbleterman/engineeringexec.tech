@@ -1,0 +1,45 @@
+---
+title: "EngineeringExec got a new home"
+slug: moving-my-blog-to-github-pages
+date: 2026-05-29
+description: "GitHub is the right home for a technology person's blog and I was just too lazy to do it until now. Then Webflow raised prices and I realized I'm still paying for a marketing people's CMS instead of a tech people's platform (for free). Ah, and the whole migration took two days net."
+categories:
+  - "tech"
+tags: []
+heroImage: /assets/posts/moving-my-blog-to-github-pages/hero.png
+heroAlt: "EngineeringExec got a new home"
+ogImage: "https://engineeringexec.tech/assets/posts/moving-my-blog-to-github-pages/hero.png"
+canonical: "https://engineeringexec.tech/posts/moving-my-blog-to-github-pages"
+draft: false
+---
+
+The blog started on Webflow as the default CMS I happened to work with. For years I told myself the same thing every engineer tells themselves: "I'll host my own blog properly one day." GitHub Pages was right there. Free, version-controlled, built for exactly this. The right home for a technology person who wants to own their content instead of renting it.
+
+I just never did it. Not because it was hard. Because I was lazy, Webflow was already paid for and you don't fix something that ain't broken.
+
+Then Webflow sent me an email.
+
+## The nudge I didn't ask for
+
+It was the kind of email you skim and then read again. Prices going up. Here's your new plan. Here's what it'll cost you.
+
+I'm sure it made sense in some spreadsheet in their growth team. You must push your shiny new "AI" fluff, the same one every old SaaS company is trying to sell. Hmmm, AI... what's the effort of scaffolding an open-source CMS with a basic contact form and migrating the content in 2026?
+
+Challenge accepted.
+
+## What it runs on now
+
+The blog now lives in a [GitHub repo](https://github.com/michaelbleterman/engineeringexec.tech) and deploys through GitHub Pages. The stack is as follows:
+
+- **[Astro](https://astro.build)** for the site itself. Static output, fast, content lives in plain markdown files I can edit in any editor or straight from the GitHub web UI.
+- **AWS Lambda + SES** for the one piece of dynamic behavior I actually need: the contact form. A tiny function behind an endpoint, no server to babysit, free tier.
+
+That's it.
+
+## The part that surprised me
+
+Here's what I didn't expect: the migration took a weekend and a half (2 days net). Including pulling content out of Webflow, rebuilding the layout in Astro, wiring up the Lambda and getting the DNS over at GoDaddy pointed at the right place.
+
+Special thanks to Claude Code, which did most of the heavy lifting 🙂
+
+So welcome to the new home, and keep on visiting.
