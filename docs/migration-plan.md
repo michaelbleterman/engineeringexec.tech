@@ -42,7 +42,7 @@ Chosen architecture:
 | 5 | Content migration | Done | #7 |
 | 6 | Contact form backend | Done | #8 |
 | 7 | Beta deployment | Done | #9, #10, #11 |
-| 8 | DNS cutover | Not started | |
+| 8 | DNS cutover | Done | |
 | 9 | Maintenance and backup automation | Not started | |
 
 Beta site: `https://michaelbleterman.github.io/engineeringexec.tech/`
